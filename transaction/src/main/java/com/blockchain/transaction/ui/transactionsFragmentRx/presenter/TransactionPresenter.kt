@@ -9,8 +9,7 @@ import rx.subjects.BehaviorSubject
 import rx.subjects.PublishSubject
 import javax.inject.Inject
 
-class TransactionPresenter @Inject constructor(processor: ITransactionProcessor):
-    ITransactionPresenter {
+class   TransactionPresenter @Inject constructor(processor: ITransactionProcessor): ITransactionPresenter {
 
     private val _state: BehaviorSubject<TransactionViewState> = BehaviorSubject.create<TransactionViewState>()
     override val state: Observable<TransactionViewState>
