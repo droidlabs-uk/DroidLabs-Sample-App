@@ -14,3 +14,19 @@ Retrieve the data via GET https://blockchain.info/multiaddr?active=xpub6CfLQa8fL
 - Coroutines
 - JUnit4 Testing
 - proper Gradle dependency setup
+- simple UI via RecyclerView
+
+##### Known limitations:
+- single `address` as input parameter to `multiAddress` API-endpoint
+- testing of MVI presenter missing
+- no `refresh()` without app close
+- `TransactionsFragmentCoroutine` not used / displayed -> could be TabLayout
+- no persistence layer / caching
+
+##### Nice to haves:
+- navigation interface between fragments
+- BottomNavigationBar / Tabbed Layout
+- Animation filling the list top to bottom
+- detailed view of each transaction
+- better abstracted network layer
+- Room DB
