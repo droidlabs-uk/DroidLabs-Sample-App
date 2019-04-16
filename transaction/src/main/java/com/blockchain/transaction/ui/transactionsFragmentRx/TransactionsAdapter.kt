@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blockchain.core.network.api.datamodel.Txs
 import com.blockchain.transaction.R
 import kotlinx.android.synthetic.main.itemview_transaction.view.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,10 +38,9 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsViewholder>() {
     override fun onBindViewHolder(holder: TransactionsViewholder, position: Int) {
         val transaction = transactions[position]
 
-        holder.transactionTime.text = setTransactionTime(transaction.time.toLong())
+        holder.transactionTime.text = prettyDateString(transaction.time.toLong())
         holder.transactionAmount.text = setAmount(transaction.result)
         holder.transactionDirection.background = setTransactionDirection(holder.itemView.resources, transaction.result.isNegative() )
-
     }
 
     private fun setTransactionDirection(resources: Resources, outgoingTransaction: Boolean): Drawable? {
@@ -50,15 +51,16 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsViewholder>() {
         }
     }
 
-    private fun setTransactionTime(time: Long): String {
-        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.UK)
-        return formatter.format(Date(time))
-    }
-
-    private fun setAmount(result: Int): String {
-        return "$result BTC"
-    }
+    private fun setAmount(result: Int) = "${convertSatoshiToBTC(result)} BTC"
 }
+
+fun prettyDateString(milliseconds: Long): String {
+    val formatter = SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss z", Locale.UK).apply { timeZone = TimeZone.getTimeZone("UTC") }
+    return formatter.format(Date(milliseconds))
+}
+
+fun convertSatoshiToBTC(satoshi: Int): BigDecimal =
+    BigDecimal(satoshi.toDouble() / 100000000).setScale(8, RoundingMode.HALF_EVEN)
 
 fun Int.isNegative() = this < 0
 
