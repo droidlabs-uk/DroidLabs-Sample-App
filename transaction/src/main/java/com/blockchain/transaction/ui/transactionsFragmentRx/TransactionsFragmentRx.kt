@@ -14,10 +14,10 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionIn
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionViewState
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.ITransactionPresenter
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_transactions.*
-import rx.Observable
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class TransactionsFragmentRx: Fragment() {
@@ -25,7 +25,7 @@ class TransactionsFragmentRx: Fragment() {
     @Inject
     lateinit var presenter: ITransactionPresenter
 
-    private val disposableBag = mutableListOf<Subscription>()
+    private val disposableBag = mutableListOf<Disposable>()
 
     private val transactionsAdapter by lazy { TransactionsAdapter() }
 
@@ -69,8 +69,7 @@ class TransactionsFragmentRx: Fragment() {
         }
     }
 
-    private fun viewIntents(address: String): Observable<TransactionIntent> =
-        Observable.create { it.onNext(InitialIntent(address)) }
+    private fun viewIntents(address: String): Flowable<TransactionIntent> = Flowable.just(InitialIntent(address))
 
 
     private fun render(viewState: TransactionViewState) {
@@ -93,8 +92,8 @@ class TransactionsFragmentRx: Fragment() {
 
     override fun onStop() {
         disposableBag
-            .filter { it.isUnsubscribed.not() }
-            .forEach { it.unsubscribe() }
+            .filter { it.isDisposed.not() }
+            .forEach { it.dispose() }
 
         disposableBag.clear()
 

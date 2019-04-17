@@ -1,73 +1,89 @@
 package com.blockchain.transaction
 
-import com.blockchain.core.network.policy.PolicyAPI
-import com.blockchain.core.network.transaction.api.datamodel.Txs
+import com.blockchain.core.network.api.datamodel.Txs
 import com.blockchain.transaction.interactor.TransactionsInteractor
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.InitialIntent
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionIntent
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionViewState
-import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionsListInitialState
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.DefaultTransactionProcessor
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.Assert.assertEquals
+import io.reactivex.Observable
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.observers.TestObserver
+import io.reactivex.schedulers.Schedulers
+import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
-import rx.Observable
-import rx.observers.TestSubscriber
-import rx.schedulers.Schedulers
+
 
 class TransactionPresenterTest {
 
-    private val blockchainAPI = mockk<PolicyAPI>()
+    private val testScheduler = Schedulers.trampoline()
+    private val testSubscriber = TestObserver<TransactionViewState>()
+
     private val interactor = mockk<TransactionsInteractor>()
-    private val processor = mockk<DefaultTransactionProcessor>()
+    private val processor = DefaultTransactionProcessor(interactor, testScheduler)
 
     private lateinit var transactionPresenter: TransactionPresenter
 
-//    val testSubscriber = TestSubscriber<TransactionViewState>()
 
     // Trigger an event and check if the viewstate is equal what you expected
 
-//    @Before
-//    fun setup() {
-//
-//        every { processor.actionProcessor() } returns Observable.Transformer { Observable.just(TransactionsListInitialState(listOf())) }
-//
-//        transactionPresenter = TransactionPresenter(processor)
-//
-//        transactionPresenter.state
-//            .observeOn(Schedulers.immediate())
-//            .subscribe(testSubscriber)
-//
-//    }
+    companion object {
+        @BeforeClass @JvmStatic
+        fun setupClass() {
+            RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+        }
+    }
+
+
+    @Before
+    fun setup() {
+        transactionPresenter = TransactionPresenter(processor, testScheduler)
+
+        transactionPresenter.state
+            .observeOn(testScheduler)
+            .subscribe(testSubscriber)
+    }
 
 
     @Test
-    fun `test the InitialState`() {
+    fun `test success state`() {
         //GIVEN
         val emptyTxsList = listOf<Txs>()
         val expectedViewState = TransactionViewState(emptyTxsList, transactionsLoading = false)
 
-        val testSubscriber = TestSubscriber<TransactionViewState>()
-
-        every { processor.actionProcessor() } returns Observable.Transformer { Observable.just(TransactionsListInitialState(emptyTxsList)) }
-
-        transactionPresenter = TransactionPresenter(processor)
-
-        transactionPresenter.state
-            .observeOn(Schedulers.trampoline())
-            .subscribe(testSubscriber)
+        every { interactor.getTransactions("") } returns Observable.just(emptyTxsList)
 
         //WHEN
-        viewIntents("").subscribe(transactionPresenter.binder)
+        viewIntent()
+            .subscribe(transactionPresenter.binder)
 
         //THEN
-        val resultViewState = testSubscriber.onNextEvents.takeLast(1)
-
-        assertEquals(expectedViewState, resultViewState)
+        testSubscriber.assertNoErrors()
+        testSubscriber.assertValue(expectedViewState)
     }
 
-    private fun viewIntents(address: String): Observable<TransactionIntent> =
-        Observable.just(InitialIntent(address))
+
+    @Test
+    fun `test error state`(){
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+    }
+
+    @Test
+    fun `test loading state`(){
+        //GIVEN
+
+        //WHEN
+
+        //THEN
+    }
+
+    private fun viewIntent(): Observable<TransactionIntent> = Observable.just(InitialIntent(""))
 }

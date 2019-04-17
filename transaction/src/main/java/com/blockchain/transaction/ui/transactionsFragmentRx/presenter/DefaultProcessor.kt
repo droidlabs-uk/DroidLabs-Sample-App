@@ -2,11 +2,12 @@ package com.blockchain.transaction.ui.transactionsFragmentRx.presenter
 
 import com.blockchain.transaction.interactor.ITransactionsInteractor
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.*
-import rx.Observable
-import rx.Scheduler
-import rx.android.schedulers.AndroidSchedulers
-import rx.lang.kotlin.ofType
-import rx.schedulers.Schedulers
+import io.reactivex.Flowable
+import io.reactivex.FlowableTransformer
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.ofType
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
     ITransactionProcessor {
 
     private val transactionProcessor =
-        Observable.Transformer<LoadTransactionsAction, TransactionsListState> { transformer ->
+        FlowableTransformer<LoadTransactionsAction, TransactionsListState> { transformer ->
             transformer.switchMap { action ->
                 interactor
                     .getTransactions(action.address)
@@ -32,10 +33,10 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
             }
         }
 
-    private fun listActionTransformer(action: TransactionsListActions): Observable<TransactionsListState> =
+    private fun listActionTransformer(action: TransactionsListActions): Flowable<TransactionsListState> =
         when (action) {
             is LoadTransactionsAction -> {
-                Observable
+                Flowable
                     .just(action)
                     .ofType<LoadTransactionsAction>()
                     .compose(transactionProcessor)
@@ -51,21 +52,21 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
         }
 
     private val transactionsList =
-        Observable.Transformer<TransactionsListContentAction, TransactionsListPartialState> { transformer ->
+        FlowableTransformer<TransactionsListContentAction, TransactionsListPartialState> { transformer ->
             transformer.publish { published ->
                 published.map { it.list.map(this::listActionTransformer) }
                     .switchMap { events ->
-                        Observable.combineLatest(events) { eventItem ->
+                        Flowable.combineLatest(events) { eventItem ->
                             TransactionsList(eventItem.map { it as TransactionsListState }) }
                             .map { if (it.listOfPartialStates.any(this::isLoadingAction)) TransactionsListLoading else it }
                     }
             }
         }
 
-    override fun actionProcessor(): Observable.Transformer<TransactionAction, TransactionsListPartialState> =
-        Observable.Transformer { action ->
+    override fun actionProcessor(): FlowableTransformer<TransactionAction, TransactionsListPartialState> =
+        FlowableTransformer { action ->
             action.publish { shared ->
-                Observable.merge<TransactionsListPartialState>(
+                Flowable.merge<TransactionsListPartialState>(
                     shared.ofType<InitialAction>().map { TransactionsListInitialState(it.list) },
                     shared.ofType<TransactionsListContentAction>().compose(transactionsList)
                 )
@@ -74,5 +75,5 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
 }
 
 interface ITransactionProcessor {
-    fun actionProcessor(): Observable.Transformer<TransactionAction, TransactionsListPartialState>
+    fun actionProcessor(): FlowableTransformer<TransactionAction, TransactionsListPartialState>
 }
