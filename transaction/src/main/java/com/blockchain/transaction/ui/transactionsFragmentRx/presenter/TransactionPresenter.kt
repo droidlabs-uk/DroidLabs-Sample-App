@@ -1,20 +1,22 @@
 package com.blockchain.transaction.ui.transactionsFragmentRx.presenter
 
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.*
-import io.reactivex.*
+import io.reactivex.Flowable
+import io.reactivex.FlowableTransformer
+import io.reactivex.Scheduler
+import io.reactivex.processors.PublishProcessor
+import io.reactivex.processors.ReplayProcessor
 import io.reactivex.rxkotlin.ofType
-import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 class   TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
 
-    private val _state: BehaviorSubject<TransactionViewState> = BehaviorSubject.create<TransactionViewState>()
+    private val _state: ReplayProcessor<TransactionViewState> = ReplayProcessor.create<TransactionViewState>()
     override val state: Flowable<TransactionViewState>
         get() = _state
 
-    private val _binder: PublishSubject<TransactionIntent> = PublishSubject.create<TransactionIntent>()
-    override val binder: Observer<TransactionIntent>
+    private val _binder: PublishProcessor<TransactionIntent> = PublishProcessor.create()
+    override val binder: Flowable<TransactionIntent>
         get() = _binder
 
     init {
@@ -85,6 +87,6 @@ class   TransactionPresenter @Inject constructor(processor: ITransactionProcesso
 }
 
 interface ITransactionPresenter {
-    val binder: Observer<TransactionIntent>
+    val binder: Flowable<TransactionIntent>
     val state: Flowable<TransactionViewState>
 }
