@@ -15,7 +15,9 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionVi
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.ITransactionPresenter
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Flowable
+import io.reactivex.FlowableSubscriber
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_transactions.*
 import javax.inject.Inject
@@ -56,7 +58,9 @@ class TransactionsFragmentRx: Fragment() {
 
         viewIntents(address)
             .subscribe(presenter.binder)
-            .also { disposableBag.add(it) }
+//            .also { disposableBag.add(it) }
+
+
     }
 
     private fun initTransactionsRecyclerView(){
@@ -70,7 +74,6 @@ class TransactionsFragmentRx: Fragment() {
     }
 
     private fun viewIntents(address: String): Flowable<TransactionIntent> = Flowable.just(InitialIntent(address))
-
 
     private fun render(viewState: TransactionViewState) {
         when {
