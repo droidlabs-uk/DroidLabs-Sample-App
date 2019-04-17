@@ -3,13 +3,14 @@ package com.blockchain.transaction.ui.transactionsFragmentRx.presenter
 import com.blockchain.transaction.interactor.ITransactionsInteractor
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.*
 import rx.Observable
+import rx.Scheduler
 import rx.android.schedulers.AndroidSchedulers
 import rx.lang.kotlin.ofType
 import rx.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsInteractor) :
+class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsInteractor, scheduler: Scheduler) :
     ITransactionProcessor {
 
     private val transactionProcessor =
@@ -17,7 +18,7 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
             transformer.switchMap { action ->
                 interactor
                     .getTransactions(action.address)
-                    .observeOn(Schedulers.computation())
+                    .observeOn(scheduler)
                     .distinctUntilChanged{prev, curr ->
                         Arrays.deepEquals(
                             prev.toTypedArray(),

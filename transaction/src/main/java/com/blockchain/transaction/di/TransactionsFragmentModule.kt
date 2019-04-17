@@ -11,6 +11,8 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.ITransacti
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
 import dagger.Module
 import dagger.Provides
+import rx.Scheduler
+import rx.schedulers.Schedulers
 
 @Module
 class TransactionsFragmentModule {
@@ -21,13 +23,16 @@ class TransactionsFragmentModule {
     fun provideTransactionsFragmentCoroutine(transactionsFragmentCoroutine: TransactionsFragmentCoroutine): TransactionsFragmentCoroutine = transactionsFragmentCoroutine
 
     @Provides
-    fun transactionPresenter(transactionProcessor: ITransactionProcessor): ITransactionPresenter =
-        TransactionPresenter(transactionProcessor)
+    fun transactionPresenter(transactionProcessor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter =
+        TransactionPresenter(transactionProcessor, scheduler)
 
     @Provides
-    fun provideTransactionsProcessor(interactor: ITransactionsInteractor): ITransactionProcessor =
-        DefaultTransactionProcessor(interactor)
+    fun provideTransactionsProcessor(interactor: ITransactionsInteractor, scheduler: Scheduler): ITransactionProcessor =
+        DefaultTransactionProcessor(interactor, scheduler)
 
     @Provides
     fun provideTransactionsInteractor(): ITransactionsInteractor = TransactionsInteractor(ApiFactory.blockchainAPI)
+
+    @Provides
+    fun provideRxScheduler(): Scheduler =  Schedulers.computation()
 }

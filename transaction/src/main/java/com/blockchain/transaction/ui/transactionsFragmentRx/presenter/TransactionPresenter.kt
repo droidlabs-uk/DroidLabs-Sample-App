@@ -3,13 +3,14 @@ package com.blockchain.transaction.ui.transactionsFragmentRx.presenter
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.*
 import rx.Observable
 import rx.Observer
+import rx.Scheduler
 import rx.lang.kotlin.ofType
 import rx.schedulers.Schedulers
 import rx.subjects.BehaviorSubject
 import rx.subjects.PublishSubject
 import javax.inject.Inject
 
-class   TransactionPresenter @Inject constructor(processor: ITransactionProcessor): ITransactionPresenter {
+class   TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
 
     private val _state: BehaviorSubject<TransactionViewState> = BehaviorSubject.create<TransactionViewState>()
     override val state: Observable<TransactionViewState>
@@ -21,7 +22,7 @@ class   TransactionPresenter @Inject constructor(processor: ITransactionProcesso
 
     init {
         _binder
-            .observeOn(Schedulers.computation())
+            .observeOn(scheduler)
             .compose(intentFilter())
             .flatMap { intentToAction(it) }
             .compose(processor.actionProcessor())
