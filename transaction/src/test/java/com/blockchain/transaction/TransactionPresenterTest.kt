@@ -12,6 +12,7 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.Transactio
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import rx.Observable
 import rx.observers.TestSubscriber
@@ -25,16 +26,21 @@ class TransactionPresenterTest {
 
     private lateinit var transactionPresenter: TransactionPresenter
 
+//    val testSubscriber = TestSubscriber<TransactionViewState>()
 
     // Trigger an event and check if the viewstate is equal what you expected
 
 //    @Before
 //    fun setup() {
-//        val actionProcessor = mockk<DefaultTransactionProcessor>(relaxed = true).actionProcessor()
-//        val emptyTxsList = listOf<Txs>()
-//        every { actionProcessor } returns Observable.Transformer { Observable.just(TransactionsListInitialState(emptyTxsList)) }
+//
+//        every { processor.actionProcessor() } returns Observable.Transformer { Observable.just(TransactionsListInitialState(listOf())) }
 //
 //        transactionPresenter = TransactionPresenter(processor)
+//
+//        transactionPresenter.state
+//            .observeOn(Schedulers.immediate())
+//            .subscribe(testSubscriber)
+//
 //    }
 
 
@@ -42,7 +48,7 @@ class TransactionPresenterTest {
     fun `test the InitialState`() {
         //GIVEN
         val emptyTxsList = listOf<Txs>()
-        val viewState = TransactionViewState(emptyTxsList, transactionsLoading = false)
+        val expectedViewState = TransactionViewState(emptyTxsList, transactionsLoading = false)
 
         val testSubscriber = TestSubscriber<TransactionViewState>()
 
@@ -51,19 +57,18 @@ class TransactionPresenterTest {
         transactionPresenter = TransactionPresenter(processor)
 
         transactionPresenter.state
-            .observeOn(Schedulers.immediate())
+            .observeOn(Schedulers.trampoline())
             .subscribe(testSubscriber)
 
         //WHEN
-        viewIntents("")
-            .subscribe(transactionPresenter.binder)
+        viewIntents("").subscribe(transactionPresenter.binder)
 
         //THEN
-        val result = testSubscriber.onNextEvents.takeLast(1)
+        val resultViewState = testSubscriber.onNextEvents.takeLast(1)
 
-        assertEquals(viewState, result)
+        assertEquals(expectedViewState, resultViewState)
     }
 
     private fun viewIntents(address: String): Observable<TransactionIntent> =
-        Observable.create { it.onNext(InitialIntent(address)) }
+        Observable.just(InitialIntent(address))
 }

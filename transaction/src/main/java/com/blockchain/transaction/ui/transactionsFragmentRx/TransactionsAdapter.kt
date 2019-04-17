@@ -1,6 +1,6 @@
 package com.blockchain.transaction.ui.transactionsFragmentRx
 
-import android.content.res.Resources
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.blockchain.core.network.api.datamodel.Txs
 import com.blockchain.transaction.R
@@ -40,14 +41,14 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsViewholder>() {
 
         holder.transactionTime.text = prettyDateString(transaction.time.toLong())
         holder.transactionAmount.text = setAmount(transaction.result)
-        holder.transactionDirection.background = setTransactionDirection(holder.itemView.resources, transaction.result.isNegative() )
+        holder.transactionDirection.background = setTransactionDirection(holder.itemView.context, transaction.result.isNegative() )
     }
 
-    private fun setTransactionDirection(resources: Resources, outgoingTransaction: Boolean): Drawable? {
+    private fun setTransactionDirection(context: Context, outgoingTransaction: Boolean): Drawable? {
         return if (outgoingTransaction) {
-            resources.getDrawable(R.drawable.ic_outgoing_24px)
+            ContextCompat.getDrawable(context, R.drawable.ic_outgoing_24px)
         } else {
-            resources.getDrawable(R.drawable.ic_incoming_24px).apply { setTint(Color.GREEN) }
+            ContextCompat.getDrawable(context, R.drawable.ic_incoming_24px)?.apply { setTint(Color.GREEN) }
         }
     }
 

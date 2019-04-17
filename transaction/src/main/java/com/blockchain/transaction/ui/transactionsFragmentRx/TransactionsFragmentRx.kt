@@ -76,8 +76,13 @@ class TransactionsFragmentRx: Fragment() {
 
     private fun render(viewState: TransactionViewState) {
         when {
-            viewState.isLoading() -> fragment_transactions_recyclerview.visibility = View.GONE
+            viewState.isLoading() -> {
+                fragment_transactions_recyclerview.visibility = View.GONE
+                fragment_transactions_progressbar.visibility = View.VISIBLE
+            }
+
             else -> {
+                fragment_transactions_progressbar.visibility = View.GONE
                 fragment_transactions_recyclerview.visibility = View.VISIBLE
                 transactionsAdapter.transactions = viewState.transactions
             }

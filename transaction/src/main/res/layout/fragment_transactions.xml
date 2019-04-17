@@ -11,4 +11,11 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/fragment_transactions_progressbar"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
