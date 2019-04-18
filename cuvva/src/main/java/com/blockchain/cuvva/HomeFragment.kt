@@ -34,14 +34,22 @@ class HomeFragment: Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val policy = "5c697fec370000a90a07fd64"
+        /*
+         Created new & validated JSON from the given response:
+         */
+        // http://www.mocky.io/v2/5cb893314c0000ad1cd3d68f
 
-        ViewModelProviders.of(this).get(PolicyViewModel::class.java).apply {
-            fetchPolicy(policy)
-            policyLiveData.observe(viewLifecycleOwner, Observer {
-                homeAdapter.policies = it.policies
-            })
-        }
+        val policy = "5cb893314c0000ad1cd3d68f"
+
+        ViewModelProviders
+            .of(this)
+            .get(PolicyViewModel::class.java)
+            .apply {
+                fetchPolicy(policy)
+                policyLiveData.observe(viewLifecycleOwner, Observer {
+                    homeAdapter.vehicles = PolicyTransformer().transform(it)
+                })
+            }
     }
 
     private fun initHomeRecyclerView(){
@@ -56,7 +64,7 @@ class HomeFragment: Fragment() {
 }
 
 class HomeAdapter: RecyclerView.Adapter<TransactionsViewholder>() {
-    var policies: List<Policy> = listOf()
+    var vehicles: List<VehiclePolicy> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -72,13 +80,32 @@ class HomeAdapter: RecyclerView.Adapter<TransactionsViewholder>() {
 
         )
 
-    override fun getItemCount() = policies.size
+    override fun getItemCount() = vehicles.size
 
     override fun onBindViewHolder(holder: TransactionsViewholder, position: Int) {
-        val policy = policies[position]
+        val policy = vehicles[position]
 
-        holder.brand.text = policy.payLoad.vehicle.make
+        val vehicleMake = policy.payload.vehicle.make
+        holder.icon.setImageResource(setBrandIcon(vehicleMake))
+        holder.brand.text = vehicleMake
+
+        holder.type.text = policy.payload.vehicle.model
+        holder.reg_plate.text = setRegPlate(policy.payload.vehicle.prettyVrm)
     }
+
+    private fun setBrandIcon(vehicleMake: String): Int {
+
+        val make = CarTypes.valueOf(vehicleMake.replace("-", "_").toUpperCase())
+
+        return when(make) {
+            CarTypes.VOLKSWAGEN -> R.drawable.carlogo_volkswagen
+            CarTypes.MINI -> R.drawable.carlogo_mini
+            CarTypes.MERCEDES_BENZ -> R.drawable.carlogo_mercedes
+            CarTypes.NISSAN -> R.drawable.carlogo_volkswagen
+        }
+    }
+
+    private fun setRegPlate(regPlate: String) = "Reg Plate\n${regPlate}"
 }
 
 class TransactionsViewholder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -90,4 +117,30 @@ class TransactionsViewholder(itemView: View): RecyclerView.ViewHolder(itemView) 
     val total_policies: TextView = itemView.itemview_home_total_policies
     val policy_time_remaining_percent: CircularProgressBar = itemView.itemview_home_policy_time_remaining_percent
     val policy_time_remaining_text: TextView = itemView.itemview_home_policy_time_remaining_text
+}
+
+enum class PolicyTypes{
+    POLICY_CREATED,
+    POLICY_FINANCIAL_TRANSACTION,
+    UNKNOWN
+}
+
+enum class CarTypes{
+    VOLKSWAGEN,
+    MINI,
+    MERCEDES_BENZ,
+    NISSAN
+}
+
+data class VehiclePolicy(
+
+)
+
+class PolicyTransformer{
+    fun transform(policyList: List<Policy>): List<VehiclePolicy> {
+
+
+
+        it.filter { it.type.toUpperCase().compareTo(PolicyTypes.POLICY_CREATED.name) == 0 }
+    }
 }

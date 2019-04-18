@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.blockchain.core.network.policy.PolicyApiFactory
 import com.blockchain.core.network.policy.PolicyRepository
-import com.blockchain.core.network.policy.datamodel.PolicyResponse
+import com.blockchain.core.network.policy.datamodel.Policy
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -19,7 +19,7 @@ class PolicyViewModel : ViewModel() {
 
     private val repository: PolicyRepository = PolicyRepository(PolicyApiFactory.policyAPI)
 
-    val policyLiveData =  MutableLiveData<PolicyResponse>()
+    val policyLiveData =  MutableLiveData<List<Policy>>()
 
     fun fetchPolicy(policy: String){
         scope.launch {

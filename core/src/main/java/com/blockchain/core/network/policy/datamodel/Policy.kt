@@ -4,7 +4,7 @@ data class Policy(
     val type: String,
     val timestamp: String,
     val unique_key: String,
-    val payLoad: PolicyPayload
+    val payload: PolicyPayload
 )
 
 data class PolicyPayload(
