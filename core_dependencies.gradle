@@ -44,4 +44,7 @@ dependencies {
 
     //MockK
     testImplementation "io.mockk:mockk:1.9.3"
+
+    //CircularProgressBar
+    implementation 'com.mikhaellopez:circularprogressbar:2.0.0'
 }

@@ -1,0 +1,32 @@
+package com.blockchain.cuvva
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.blockchain.core.network.policy.PolicyApiFactory
+import com.blockchain.core.network.policy.PolicyRepository
+import com.blockchain.core.network.policy.datamodel.PolicyResponse
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
+
+class PolicyViewModel : ViewModel() {
+
+    private val parentJob = Job()
+
+    private val coroutineContext: CoroutineContext
+        get() = parentJob + Dispatchers.Default
+
+    private val scope = CoroutineScope(coroutineContext)
+
+    private val repository: PolicyRepository = PolicyRepository(PolicyApiFactory.policyAPI)
+
+    val policyLiveData =  MutableLiveData<PolicyResponse>()
+
+    fun fetchPolicy(policy: String){
+        scope.launch {
+            val policy = repository.getPolicy(policy)
+            policyLiveData.postValue(policy)
+        }
+    }
+
+    fun cancelAllRequests() = coroutineContext.cancel()
+}

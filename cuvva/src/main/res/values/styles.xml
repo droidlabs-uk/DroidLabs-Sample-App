@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PolicyProgressbar">
+        <item name="cpb_progressbar_color">#3F61E4</item>
+        <item name="cpb_progressbar_width">2dp</item>
+        <item name="cpb_background_progressbar_color">#FFFFFF</item>
+        <item name="cpb_background_progressbar_width">2dp</item>
+    </style>
+    
+</resources>

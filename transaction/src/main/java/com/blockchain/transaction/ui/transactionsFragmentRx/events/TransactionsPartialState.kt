@@ -1,6 +1,6 @@
 package com.blockchain.transaction.ui.transactionsFragmentRx.events
 
-import com.blockchain.core.network.api.datamodel.Txs
+import com.blockchain.core.network.transaction.api.datamodel.Txs
 
 sealed class TransactionsListPartialState
 class TransactionsListInitialState(val transactions: List<Txs>): TransactionsListPartialState()

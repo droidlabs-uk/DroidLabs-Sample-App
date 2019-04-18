@@ -1,1 +1,1 @@
-include ':app', ':core', ':transaction'
+include ':app', ':core', ':transaction', ':cuvva'
