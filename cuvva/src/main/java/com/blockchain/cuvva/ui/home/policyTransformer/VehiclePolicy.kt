@@ -1,6 +1,7 @@
 package com.blockchain.cuvva.ui.home.policyTransformer
 
 data class VehiclePolicy(
+    val active: Boolean,
     val icon: Int,
     val make: String,
     val type: String,

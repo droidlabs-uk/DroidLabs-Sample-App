@@ -4,23 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.blockchain.core.network.policy.datamodel.Policy
 import com.blockchain.cuvva.PolicyViewModel
 import com.blockchain.cuvva.R
 import com.blockchain.cuvva.ui.home.adapter.HomeAdapter
 import com.blockchain.cuvva.ui.home.policyTransformer.PolicyTransformer
-import com.mikhaellopez.circularprogressbar.CircularProgressBar
+import com.blockchain.cuvva.ui.utils.CustomDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.itemview_home.view.*
 
 class HomeFragment: Fragment() {
 
@@ -62,7 +55,7 @@ class HomeFragment: Fragment() {
         fragment_home_recyclerview.apply {
             adapter = homeAdapter
             layoutManager = linearLayoutManager
-            addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
+            addItemDecoration(CustomDividerItemDecoration(context, linearLayoutManager.orientation))
         }
     }
 }

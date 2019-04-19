@@ -1,6 +1,7 @@
 package com.blockchain.cuvva.ui.home.policyTransformer
 
 import com.blockchain.core.network.policy.datamodel.Policy
+import com.blockchain.core.network.policy.datamodel.Vehicle
 import com.blockchain.cuvva.R
 
 class PolicyTransformer{
@@ -24,10 +25,11 @@ class PolicyTransformer{
             val vehicleMake = vehicle.payload.vehicle.make
 
             val item = VehiclePolicy(
+                active = hasActivePolicy(vehiclePolicyList),
                 icon = setBrandIcon(vehicleMake),
                 make = vehicleMake,
-                type = vehicle.payload.vehicle.model,
-                policyAction = "",
+                type = setVehicleType(vehicle.payload.vehicle),
+                policyAction = "Insure",
                 pretty_reg_plate = vehicle.payload.vehicle.prettyVrm,
                 total_policies = vehiclePolicyList.size,
                 remaining_time = "",
@@ -38,6 +40,12 @@ class PolicyTransformer{
         }
 
         return vehiclePolicies
+    }
+
+    private fun setVehicleType(vehicle: Vehicle) = "${vehicle.color} ${vehicle.model}"
+
+    private fun hasActivePolicy(vehiclePolicyList: List<Policy>): Boolean {
+        return false
     }
 
     private fun setBrandIcon(vehicleMake: String): Int {
