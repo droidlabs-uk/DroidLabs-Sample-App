@@ -15,10 +15,8 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionVi
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.ITransactionPresenter
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Flowable
-import io.reactivex.FlowableSubscriber
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_transactions.*
 import javax.inject.Inject
 
@@ -27,7 +25,7 @@ class TransactionsFragmentRx: Fragment() {
     @Inject
     lateinit var presenter: ITransactionPresenter
 
-    private val disposableBag = mutableListOf<Disposable>()
+    private val disposableBag = CompositeDisposable()
 
     private val transactionsAdapter by lazy { TransactionsAdapter() }
 
@@ -56,11 +54,7 @@ class TransactionsFragmentRx: Fragment() {
             .subscribe(this::render, this::streamError)
             .also { disposableBag.add(it) }
 
-        viewIntents(address)
-            .subscribe(presenter.binder)
-//            .also { disposableBag.add(it) }
-
-
+        viewIntent(address).subscribe(presenter.binder)
     }
 
     private fun initTransactionsRecyclerView(){
@@ -73,7 +67,7 @@ class TransactionsFragmentRx: Fragment() {
         }
     }
 
-    private fun viewIntents(address: String): Flowable<TransactionIntent> = Flowable.just(InitialIntent(address))
+    private fun viewIntent(address: String): Flowable<TransactionIntent> = Flowable.just(InitialIntent(address))
 
     private fun render(viewState: TransactionViewState) {
         when {
@@ -94,10 +88,6 @@ class TransactionsFragmentRx: Fragment() {
         Toast.makeText(context, "TransactionsFragmentRx: $error", Toast.LENGTH_LONG).show()
 
     override fun onStop() {
-        disposableBag
-            .filter { it.isDisposed.not() }
-            .forEach { it.dispose() }
-
         disposableBag.clear()
 
         super.onStop()

@@ -8,7 +8,6 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionIn
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionViewState
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.DefaultTransactionProcessor
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
-import io.mockk.Runs
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Flowable
