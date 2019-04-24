@@ -8,12 +8,15 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionIn
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionViewState
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.DefaultTransactionProcessor
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
+import io.mockk.Runs
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Flowable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.TestScheduler
 import io.reactivex.subscribers.TestSubscriber
+import org.junit.After
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
@@ -21,7 +24,7 @@ import org.junit.Test
 
 class TransactionPresenterTest {
 
-    private val testScheduler = Schedulers.trampoline()
+    private val testScheduler = TestScheduler()
     private val testSubscriber = TestSubscriber<TransactionViewState>()
 
     private val interactor = mockk<TransactionsInteractor>()
@@ -39,7 +42,6 @@ class TransactionPresenterTest {
         }
     }
 
-
     @Before
     fun setup() {
         transactionPresenter = TransactionPresenter(processor, testScheduler)
@@ -49,6 +51,10 @@ class TransactionPresenterTest {
             .subscribe(testSubscriber)
     }
 
+    @After
+    fun cleanup(){
+        testSubscriber.dispose()
+    }
 
     @Test
     fun `test success state`() {
@@ -59,35 +65,35 @@ class TransactionPresenterTest {
         every { interactor.getTransactions("") } returns Flowable.just(emptyTxsList)
 
         //WHEN
-        viewIntent()
-            .subscribe(transactionPresenter.binder)
+        viewIntent().subscribe(transactionPresenter.binder)
+        testScheduler.triggerActions()
 
         //THEN
         testSubscriber.assertNoErrors()
         testSubscriber.assertValue(expectedViewState)
     }
 
-
     @Test
     fun `test error state`(){
         //GIVEN
         val emptyTxsList = listOf<Txs>()
 
+        val expectedViewState = TransactionViewState(emptyTxsList, transactionsLoading = false)
+
         val errorMessage = "ERROR"
         val errorViewState = ErrorViewState(isError = true, message = errorMessage)
         val errorThrowable = Throwable(message = errorMessage)
 
-        val expectedViewState = TransactionViewState(emptyTxsList, errorViewState, transactionsLoading = false)
+        val errorTransactionViewState = TransactionViewState(emptyTxsList, errorViewState, transactionsLoading = false)
 
         every { interactor.getTransactions("") } returns Flowable.error(errorThrowable)
 
         //WHEN
-        viewIntent()
-            .subscribe(transactionPresenter.binder)
+        viewIntent().subscribe(transactionPresenter.binder)
+        testScheduler.triggerActions()
 
         //THEN
-        testSubscriber.assertError(errorThrowable)
-        testSubscriber.assertValue(expectedViewState)
+        testSubscriber.assertValue(errorTransactionViewState)
     }
 
     @Test
@@ -100,8 +106,8 @@ class TransactionPresenterTest {
         every { interactor.getTransactions("") }
 
         //WHEN
-        viewIntent()
-            .subscribe(transactionPresenter.binder)
+        viewIntent().subscribe(transactionPresenter.binder)
+        testScheduler.triggerActions()
 
         //THEN
         testSubscriber.assertValue(expectedViewState)

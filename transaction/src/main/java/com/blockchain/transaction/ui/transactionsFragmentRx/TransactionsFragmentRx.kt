@@ -70,6 +70,8 @@ class TransactionsFragmentRx: Fragment() {
     private fun viewIntent(address: String): Flowable<TransactionIntent> = Flowable.just(InitialIntent(address))
 
     private fun render(viewState: TransactionViewState) {
+        if (viewState.transactionsError.isError) streamError(viewState.transactionsError)
+
         when {
             viewState.isLoading() -> {
                 fragment_transactions_recyclerview.visibility = View.GONE

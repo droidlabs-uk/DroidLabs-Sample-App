@@ -10,4 +10,4 @@ data class TransactionViewState (
     fun isLoading(): Boolean = transactionsLoading
 }
 
-data class ErrorViewState(val isError: Boolean = false, val message: String = "")
+data class ErrorViewState(val isError: Boolean = false, override val message: String = ""): Throwable()
