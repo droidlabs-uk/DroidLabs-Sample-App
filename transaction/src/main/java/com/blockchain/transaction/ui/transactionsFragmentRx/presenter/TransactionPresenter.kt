@@ -10,7 +10,7 @@ import io.reactivex.processors.ReplayProcessor
 import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
-class   TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
+class TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
 
     private val _state: ReplayProcessor<TransactionViewState> = ReplayProcessor.create<TransactionViewState>()
     override val state: Flowable<TransactionViewState>
