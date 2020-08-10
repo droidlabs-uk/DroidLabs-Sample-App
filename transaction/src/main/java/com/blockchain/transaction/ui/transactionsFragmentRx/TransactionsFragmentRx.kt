@@ -20,7 +20,6 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-
 class TransactionsFragmentRx: Fragment() {
 
     @Inject
