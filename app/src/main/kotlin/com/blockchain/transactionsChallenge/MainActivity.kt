@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.blockchain.cuvva.ui.home.HomeFragment
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.Navigation
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -16,6 +19,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
+    private lateinit var navController: NavController
+    private lateinit var navGraph: NavGraph
+
 //    private var fragment = TransactionsFragmentCoroutine()
 //    private var fragment = TransactionsFragmentRx()
     private var fragment = HomeFragment()
@@ -26,10 +32,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, fragment)
-            .commit()
+        initNavGraph()
+    }
+
+    private fun initNavGraph() {
+        navController = Navigation.findNavController(this, R.id.main_nav_host_fragment)
+        navGraph = navController.navInflater.inflate(R.navigation.main_nav_graph)
+
+        navController.setGraph(R.navigation.main_nav_graph)
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
