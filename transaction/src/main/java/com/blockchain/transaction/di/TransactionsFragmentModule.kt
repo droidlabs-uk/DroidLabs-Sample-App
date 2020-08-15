@@ -11,8 +11,8 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.ITransacti
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
 import dagger.Module
 import dagger.Provides
-import rx.Scheduler
-import rx.schedulers.Schedulers
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 
 @Module
 class TransactionsFragmentModule {

@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val policyBaseUrl = "http://www.mocky.io/"
+private const val policyBaseUrl = "https://www.mocky.io/"
 
 object PolicyApiFactory {
 

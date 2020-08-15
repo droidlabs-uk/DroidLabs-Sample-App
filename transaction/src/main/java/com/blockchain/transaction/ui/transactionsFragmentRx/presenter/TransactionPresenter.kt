@@ -1,23 +1,23 @@
 package com.blockchain.transaction.ui.transactionsFragmentRx.presenter
 
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.*
-import rx.Observable
-import rx.Observer
-import rx.Scheduler
-import rx.lang.kotlin.ofType
-import rx.schedulers.Schedulers
-import rx.subjects.BehaviorSubject
-import rx.subjects.PublishSubject
+import io.reactivex.Flowable
+import io.reactivex.FlowableSubscriber
+import io.reactivex.FlowableTransformer
+import io.reactivex.Scheduler
+import io.reactivex.processors.PublishProcessor
+import io.reactivex.processors.ReplayProcessor
+import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
-class   TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
+class TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
 
-    private val _state: BehaviorSubject<TransactionViewState> = BehaviorSubject.create<TransactionViewState>()
-    override val state: Observable<TransactionViewState>
+    private val _state: ReplayProcessor<TransactionViewState> = ReplayProcessor.create<TransactionViewState>()
+    override val state: Flowable<TransactionViewState>
         get() = _state
 
-    private val _binder: PublishSubject<TransactionIntent> = PublishSubject.create<TransactionIntent>()
-    override val binder: Observer<TransactionIntent>
+    private val _binder: PublishProcessor<TransactionIntent> = PublishProcessor.create()
+    override val binder: FlowableSubscriber<TransactionIntent>
         get() = _binder
 
     init {
@@ -31,10 +31,10 @@ class   TransactionPresenter @Inject constructor(processor: ITransactionProcesso
             .subscribe(_state)
     }
 
-    private fun intentFilter(): Observable.Transformer<TransactionIntent, TransactionIntent> {
-        return Observable.Transformer { stream ->
+    private fun intentFilter(): FlowableTransformer<TransactionIntent, TransactionIntent> {
+        return FlowableTransformer { stream ->
             stream.publish { intent ->
-                Observable.merge(
+                Flowable.merge(
                     intent.ofType<InitialIntent>().distinctUntilChanged { prev, curr -> prev == curr },
                     intent.filter { it !is InitialIntent }
                 )
@@ -42,12 +42,12 @@ class   TransactionPresenter @Inject constructor(processor: ITransactionProcesso
         }
     }
 
-    private fun intentToAction(intent: TransactionIntent): Observable<TransactionAction> {
+    private fun intentToAction(intent: TransactionIntent): Flowable<TransactionAction> {
         return when (intent) {
             is InitialIntent -> {
-                Observable.concat(
-                    Observable.just(InitialAction(listOf())),
-                    Observable.just(TransactionsListContentAction(list = updateActions(intent.address)))
+                Flowable.concat(
+                    Flowable.just(InitialAction(listOf())),
+                    Flowable.just(TransactionsListContentAction(list = updateActions(intent.address)))
                 )
             }
         }
@@ -88,6 +88,6 @@ class   TransactionPresenter @Inject constructor(processor: ITransactionProcesso
 }
 
 interface ITransactionPresenter {
-    val binder: Observer<TransactionIntent>
-    val state: Observable<TransactionViewState>
+    val binder: FlowableSubscriber<TransactionIntent>
+    val state: Flowable<TransactionViewState>
 }

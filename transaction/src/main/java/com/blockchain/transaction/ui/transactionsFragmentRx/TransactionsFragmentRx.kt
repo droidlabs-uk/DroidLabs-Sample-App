@@ -14,10 +14,10 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionIn
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionViewState
 import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.ITransactionPresenter
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_transactions.*
-import rx.Observable
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class TransactionsFragmentRx: Fragment() {
@@ -25,7 +25,7 @@ class TransactionsFragmentRx: Fragment() {
     @Inject
     lateinit var presenter: ITransactionPresenter
 
-    private val disposableBag = mutableListOf<Subscription>()
+    private val disposableBag = CompositeDisposable()
 
     private val transactionsAdapter by lazy { TransactionsAdapter() }
 
@@ -54,9 +54,7 @@ class TransactionsFragmentRx: Fragment() {
             .subscribe(this::render, this::streamError)
             .also { disposableBag.add(it) }
 
-        viewIntents(address)
-            .subscribe(presenter.binder)
-            .also { disposableBag.add(it) }
+        viewIntent(address).subscribe(presenter.binder)
     }
 
     private fun initTransactionsRecyclerView(){
@@ -69,11 +67,11 @@ class TransactionsFragmentRx: Fragment() {
         }
     }
 
-    private fun viewIntents(address: String): Observable<TransactionIntent> =
-        Observable.create { it.onNext(InitialIntent(address)) }
-
+    private fun viewIntent(address: String): Flowable<TransactionIntent> = Flowable.just(InitialIntent(address))
 
     private fun render(viewState: TransactionViewState) {
+        if (viewState.transactionsError.isError) streamError(viewState.transactionsError)
+
         when {
             viewState.isLoading() -> {
                 fragment_transactions_recyclerview.visibility = View.GONE
@@ -92,10 +90,6 @@ class TransactionsFragmentRx: Fragment() {
         Toast.makeText(context, "TransactionsFragmentRx: $error", Toast.LENGTH_LONG).show()
 
     override fun onStop() {
-        disposableBag
-            .filter { it.isUnsubscribed.not() }
-            .forEach { it.unsubscribe() }
-
         disposableBag.clear()
 
         super.onStop()
