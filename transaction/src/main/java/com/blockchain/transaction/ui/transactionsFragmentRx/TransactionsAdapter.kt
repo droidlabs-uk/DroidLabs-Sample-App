@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.blockchain.core.network.api.datamodel.Txs
+import com.blockchain.core.network.transaction.api.datamodel.Txs
 import com.blockchain.transaction.R
 import kotlinx.android.synthetic.main.itemview_transaction.view.*
 import java.math.BigDecimal

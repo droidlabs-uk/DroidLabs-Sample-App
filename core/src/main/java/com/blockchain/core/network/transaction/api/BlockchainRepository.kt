@@ -1,6 +1,7 @@
-package com.blockchain.core.network.api
+package com.blockchain.core.network.transaction.api
 
-import com.blockchain.core.network.api.datamodel.BlockchainMultiAddressResponse
+import com.blockchain.core.network.BaseRepository
+import com.blockchain.core.network.transaction.api.datamodel.BlockchainMultiAddressResponse
 
 class BlockchainRepository(private val api: BlockchainAPI): BaseRepository() {
 

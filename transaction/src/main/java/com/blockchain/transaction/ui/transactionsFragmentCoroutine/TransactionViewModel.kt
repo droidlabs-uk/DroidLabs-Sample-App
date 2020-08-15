@@ -2,9 +2,9 @@ package com.blockchain.transaction.ui.transactionsFragmentCoroutine
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.blockchain.core.network.api.ApiFactory
-import com.blockchain.core.network.api.BlockchainRepository
-import com.blockchain.core.network.api.datamodel.BlockchainMultiAddressResponse
+import com.blockchain.core.network.transaction.api.BlockchainApiFactory
+import com.blockchain.core.network.transaction.api.BlockchainRepository
+import com.blockchain.core.network.transaction.api.datamodel.BlockchainMultiAddressResponse
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -17,7 +17,7 @@ class TransactionViewModel : ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository: BlockchainRepository = BlockchainRepository(ApiFactory.blockchainAPI)
+    private val repository: BlockchainRepository = BlockchainRepository(BlockchainApiFactory.blockchainAPI)
 
     val multiAddressLiveData =  MutableLiveData<BlockchainMultiAddressResponse>()
 

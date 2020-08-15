@@ -1,7 +1,7 @@
 package com.blockchain.transaction.interactor
 
-import com.blockchain.core.network.api.BlockchainAPI
-import com.blockchain.core.network.api.datamodel.Txs
+import com.blockchain.core.network.transaction.api.BlockchainAPI
+import com.blockchain.core.network.transaction.api.datamodel.Txs
 import rx.Observable
 
 class TransactionsInteractor(private val blockchainAPI: BlockchainAPI): ITransactionsInteractor {

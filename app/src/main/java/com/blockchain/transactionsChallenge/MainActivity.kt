@@ -3,8 +3,7 @@ package com.blockchain.transactionsChallenge
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.blockchain.transaction.ui.transactionsFragmentCoroutine.TransactionsFragmentCoroutine
-import com.blockchain.transaction.ui.transactionsFragmentRx.TransactionsFragmentRx
+import com.blockchain.cuvva.ui.home.HomeFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -17,8 +16,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
-//    private var transactionFragment = TransactionsFragmentCoroutine()
-    private var transactionFragment = TransactionsFragmentRx()
+//    private var fragment = TransactionsFragmentCoroutine()
+//    private var fragment = TransactionsFragmentRx()
+    private var fragment = HomeFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, transactionFragment)
+            .replace(R.id.container, fragment)
             .commit()
     }
 

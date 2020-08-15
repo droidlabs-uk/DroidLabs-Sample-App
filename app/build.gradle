@@ -38,6 +38,7 @@ android {
 dependencies {
     implementation project(':core')
     implementation project(':transaction')
+    implementation project(':cuvva')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
 }

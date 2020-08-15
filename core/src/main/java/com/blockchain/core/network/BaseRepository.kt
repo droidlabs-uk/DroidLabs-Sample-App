@@ -1,4 +1,4 @@
-package com.blockchain.core.network.api
+package com.blockchain.core.network
 
 import android.util.Log
 import retrofit2.Response

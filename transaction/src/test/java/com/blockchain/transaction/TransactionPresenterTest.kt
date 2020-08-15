@@ -1,7 +1,7 @@
 package com.blockchain.transaction
 
-import com.blockchain.core.network.api.BlockchainAPI
-import com.blockchain.core.network.api.datamodel.Txs
+import com.blockchain.core.network.policy.PolicyAPI
+import com.blockchain.core.network.transaction.api.datamodel.Txs
 import com.blockchain.transaction.interactor.TransactionsInteractor
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.InitialIntent
 import com.blockchain.transaction.ui.transactionsFragmentRx.events.TransactionIntent
@@ -12,7 +12,6 @@ import com.blockchain.transaction.ui.transactionsFragmentRx.presenter.Transactio
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 import rx.Observable
 import rx.observers.TestSubscriber
@@ -20,7 +19,7 @@ import rx.schedulers.Schedulers
 
 class TransactionPresenterTest {
 
-    private val blockchainAPI = mockk<BlockchainAPI>()
+    private val blockchainAPI = mockk<PolicyAPI>()
     private val interactor = mockk<TransactionsInteractor>()
     private val processor = mockk<DefaultTransactionProcessor>()
 

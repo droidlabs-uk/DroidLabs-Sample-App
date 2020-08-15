@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/itemview_home_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemview_home_brand"
+            style="@style/VehicleBrand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@id/itemview_home_policy_action"
+            app:layout_constraintStart_toEndOf="@id/itemview_home_icon"
+            app:layout_constraintTop_toTopOf="@id/itemview_home_icon"
+            tools:text="Volkswagen" />
+
+        <TextView
+            android:id="@+id/itemview_home_type"
+            style="@style/VehicleType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/itemview_home_brand"
+            app:layout_constraintStart_toStartOf="@id/itemview_home_brand"
+            app:layout_constraintTop_toBottomOf="@id/itemview_home_brand"
+            tools:text="Silver Polo" />
+
+        <Button
+            android:id="@+id/itemview_home_policy_action"
+            style="@style/VehicleActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/itemview_home_brand"
+            tools:text="Extend" />
+
+        <TextView
+            android:id="@+id/itemview_home_reg_plate"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:maxLines="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemview_home_icon"
+            tools:text="Reg plate\nLB07 SEO" />
+
+        <TextView
+            android:id="@+id/itemview_home_total_policies"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:layout_marginStart="40dp"
+            app:layout_constraintTop_toTopOf="@id/itemview_home_reg_plate"
+            app:layout_constraintStart_toEndOf="@id/itemview_home_reg_plate"
+            tools:text="Total policies\n1" />
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/itemview_home_policy_time_remaining_percent"
+            style="@style/PolicyProgressbar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@id/itemview_home_policy_time_remaining_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemview_home_reg_plate"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:visibility="gone"
+            tools:cpb_progress="90" />
+
+        <TextView
+            android:id="@+id/itemview_home_policy_time_remaining_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemview_home_policy_time_remaining_percent"
+            app:layout_constraintTop_toTopOf="@id/itemview_home_policy_time_remaining_percent"
+            android:visibility="gone"
+            tools:text="55 minutes remaining" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,4 +1,4 @@
-package com.blockchain.core.network.api.datamodel
+package com.blockchain.core.network.transaction.api.datamodel
 
 data class Txs (
     val result: Int,

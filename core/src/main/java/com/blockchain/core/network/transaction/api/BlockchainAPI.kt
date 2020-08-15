@@ -1,6 +1,6 @@
-package com.blockchain.core.network.api
+package com.blockchain.core.network.transaction.api
 
-import com.blockchain.core.network.api.datamodel.BlockchainMultiAddressResponse
+import com.blockchain.core.network.transaction.api.datamodel.BlockchainMultiAddressResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET

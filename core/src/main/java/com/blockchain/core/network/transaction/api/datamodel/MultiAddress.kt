@@ -1,4 +1,4 @@
-package com.blockchain.core.network.api.datamodel
+package com.blockchain.core.network.transaction.api.datamodel
 
 class BlockchainMultiAddressResponse (
     val addresses: List<Address>,
