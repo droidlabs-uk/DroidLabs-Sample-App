@@ -40,6 +40,7 @@ dependencies {
     implementation project(':features:transaction')
     implementation project(':features:cuvva')
     implementation project(':features:main')
+    implementation project(':features:breakingbad')
     kapt "com.google.dagger:dagger-compiler:2.16"
     kapt "com.google.dagger:dagger-android-processor:2.16"
 }
