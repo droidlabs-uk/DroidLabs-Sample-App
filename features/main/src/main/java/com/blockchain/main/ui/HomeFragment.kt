@@ -18,19 +18,29 @@ import dagger.android.DaggerFragment
 import kotlinx.android.synthetic.main.home_fragment.*
 import javax.inject.Inject
 
-
 class HomeFragment : dagger.android.support.DaggerFragment() {
 
     @Inject
     lateinit var navigator: Navigator
 
-    private lateinit var viewModel: HomeViewModel
     private val homeAdapter = DelegatingMainAdapter() { actions ->
         when (actions) {
-            MainActions.CuvvaFeatureClicked -> TODO()
-            MainActions.TransactionsFeatureClicked -> TODO()
-            MainActions.RxFeatureClicked -> TODO()
-            MainActions.CoroutineFeatureClicked -> TODO()
+            MainActions.CuvvaFeatureClicked -> navigator.navigateTo(
+                NavigationDest.Cuvva,
+                requireContext()
+            )
+            MainActions.TransactionsFeatureClicked -> navigator.navigateTo(
+                NavigationDest.Transactions,
+                requireContext()
+            )
+            MainActions.RxFeatureClicked -> navigator.navigateTo(
+                NavigationDest.Rx,
+                requireContext()
+            )
+            MainActions.CoroutineFeatureClicked -> navigator.navigateTo(
+                NavigationDest.Coroutine,
+                requireContext()
+            )
             MainActions.BreakingBadFeatureClicked -> navigator.navigateTo(
                 NavigationDest.BreakingBad,
                 requireContext()
@@ -51,12 +61,6 @@ class HomeFragment : dagger.android.support.DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initHomeRecyclerView()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     private fun initHomeRecyclerView() {
