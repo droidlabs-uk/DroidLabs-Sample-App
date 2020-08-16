@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class CuvvaFragment : Fragment() {
 
-    private val homeAdapter by lazy { TransactionsAdapter() }
+    private val transactionsAdapter = TransactionsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +29,7 @@ class CuvvaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initHomeRecyclerView()
+        initTransactionsRecyclerView()
     }
 
     override fun onStart() {
@@ -48,16 +48,16 @@ class CuvvaFragment : Fragment() {
             .apply {
                 fetchPolicy(policy)
                 policyLiveData.observe(viewLifecycleOwner, Observer {
-                    homeAdapter.vehiclePolicies = PolicyTransformer().transform(it)
+                    transactionsAdapter.vehiclePolicies = PolicyTransformer().transform(it)
                 })
             }
     }
 
-    private fun initHomeRecyclerView() {
+    private fun initTransactionsRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(context)
 
         fragment_cuvva_recyclerview.apply {
-            adapter = homeAdapter
+            adapter = transactionsAdapter
             layoutManager = linearLayoutManager
             addItemDecoration(CustomDividerItemDecoration(context, linearLayoutManager.orientation))
         }

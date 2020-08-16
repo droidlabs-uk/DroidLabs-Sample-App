@@ -1,4 +1,4 @@
-package com.blockchain.main
+package com.blockchain.main.ui
 
 import androidx.lifecycle.ViewModel
 

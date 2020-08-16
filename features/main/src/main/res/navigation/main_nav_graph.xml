@@ -19,7 +19,7 @@
         android:label="TransactionsFragmentRx" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.blockchain.main.HomeFragment"
+        android:name="com.blockchain.main.ui.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" />
 </navigation>

@@ -1,8 +1,7 @@
 package com.blockchain.main.di
 
-import com.blockchain.main.MainActivity
+import com.blockchain.main.ui.MainActivity
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 
 @Module
