@@ -10,16 +10,20 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blockchain.cuvva.PolicyViewModel
 import com.blockchain.cuvva.R
-import com.blockchain.cuvva.ui.home.adapter.HomeAdapter
+import com.blockchain.cuvva.ui.home.adapter.TransactionsAdapter
 import com.blockchain.cuvva.ui.home.policyTransformer.PolicyTransformer
 import com.blockchain.cuvva.ui.utils.CustomDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment: Fragment() {
+class CuvvaFragment : Fragment() {
 
-    private val homeAdapter by lazy { HomeAdapter() }
+    private val homeAdapter by lazy { TransactionsAdapter() }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
         layoutInflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,10 +53,10 @@ class HomeFragment: Fragment() {
             }
     }
 
-    private fun initHomeRecyclerView(){
+    private fun initHomeRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(context)
 
-        fragment_home_recyclerview.apply {
+        fragment_cuvva_recyclerview.apply {
             adapter = homeAdapter
             layoutManager = linearLayoutManager
             addItemDecoration(CustomDividerItemDecoration(context, linearLayoutManager.orientation))

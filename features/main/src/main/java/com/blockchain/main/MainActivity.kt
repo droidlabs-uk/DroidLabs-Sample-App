@@ -1,9 +1,8 @@
-package com.blockchain.transactionsChallenge
+package com.blockchain.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.blockchain.cuvva.ui.home.HomeFragment
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.Navigation

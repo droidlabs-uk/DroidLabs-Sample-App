@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blockchain.cuvva.R
 import com.blockchain.cuvva.ui.home.policyTransformer.VehiclePolicy
 
-class HomeAdapter: RecyclerView.Adapter<TransactionsViewholder>() {
+class TransactionsAdapter: RecyclerView.Adapter<TransactionsViewholder>() {
     var vehiclePolicies: List<VehiclePolicy> = listOf()
         set(value) {
             field = value
