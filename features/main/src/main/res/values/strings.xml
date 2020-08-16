@@ -4,4 +4,5 @@
     <string name="transactionsFeature">Transactions Feature</string>
     <string name="rxFeature">Rx Feature</string>
     <string name="coroutineFeature">Coroutine Feature</string>
+    <string name="breakingBadFeature">Breaking Bad Feature</string>
 </resources>

@@ -1,18 +1,18 @@
 package com.blockchain.main.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.blockchain.main.ui.adapter.delegates.coroutineFeature
-import com.blockchain.main.ui.adapter.delegates.cuvvaFeature
-import com.blockchain.main.ui.adapter.delegates.rxFeature
-import com.blockchain.main.ui.adapter.delegates.transactionsFeature
+import com.blockchain.main.ui.adapter.delegates.*
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
-class DelegatingMainAdapter() : AsyncListDifferDelegationAdapter<MainItem>(
+class DelegatingMainAdapter(
+    clicks: (MainActions) -> Unit
+) : AsyncListDifferDelegationAdapter<MainItem>(
     diffUtil,
-    cuvvaFeature(),
-    transactionsFeature(),
-    rxFeature(),
-    coroutineFeature()
+    cuvvaFeature(clicks),
+    transactionsFeature(clicks),
+    rxFeature(clicks),
+    coroutineFeature(clicks),
+    breakingBadFeature(clicks)
 ) {
     companion object {
         private val diffUtil: DiffUtil.ItemCallback<MainItem> =
@@ -31,7 +31,11 @@ class DelegatingMainAdapter() : AsyncListDifferDelegationAdapter<MainItem>(
 }
 
 sealed class MainActions {
-    //TODO add onClickListener
+    object CuvvaFeatureClicked : MainActions()
+    object TransactionsFeatureClicked : MainActions()
+    object RxFeatureClicked : MainActions()
+    object CoroutineFeatureClicked : MainActions()
+    object BreakingBadFeatureClicked : MainActions()
 }
 
 sealed class MainItem {
@@ -39,4 +43,5 @@ sealed class MainItem {
     object TransactionsFeature : MainItem()
     object RxFeature : MainItem()
     object CoroutineFeature : MainItem()
+    object BreakingBadFeature : MainItem()
 }

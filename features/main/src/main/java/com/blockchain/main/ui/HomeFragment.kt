@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.blockchain.main.R
 import com.blockchain.main.ui.adapter.DelegatingMainAdapter
 import com.blockchain.main.ui.adapter.HomeAdapterItemManager
+import com.blockchain.main.ui.adapter.MainActions
 import com.blockchain.main.utils.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -22,7 +23,15 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var viewModel: HomeViewModel
-    private val homeAdapter = DelegatingMainAdapter()
+    private val homeAdapter = DelegatingMainAdapter(){ actions ->
+        when(actions){
+            MainActions.CuvvaFeatureClicked -> TODO()
+            MainActions.TransactionsFeatureClicked -> TODO()
+            MainActions.RxFeatureClicked -> TODO()
+            MainActions.CoroutineFeatureClicked -> TODO()
+            MainActions.BreakingBadFeatureClicked -> TODO()
+        }
+    }
     private val homeAdapterItemManager = HomeAdapterItemManager()
 
     override fun onCreateView(

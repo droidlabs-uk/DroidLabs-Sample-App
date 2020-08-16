@@ -4,19 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/homeFragment">
-
-    <fragment
-        android:id="@+id/cuvvaFragment"
-        android:name="com.blockchain.cuvva.ui.home.CuvvaFragment"
-        android:label="HomeFragment" />
-    <fragment
-        android:id="@+id/transactionsFragmentCoroutine"
-        android:name="com.blockchain.transaction.ui.transactionsFragmentCoroutine.TransactionsFragmentCoroutine"
-        android:label="TransactionsFragmentCoroutine" />
-    <fragment
-        android:id="@+id/transactionsFragmentRx"
-        android:name="com.blockchain.transaction.ui.transactionsFragmentRx.TransactionsFragmentRx"
-        android:label="TransactionsFragmentRx" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.blockchain.main.ui.HomeFragment"

@@ -9,6 +9,7 @@ class HomeAdapterItemManager {
         visibleItems += MainItem.TransactionsFeature
         visibleItems += MainItem.RxFeature
         visibleItems += MainItem.CoroutineFeature
+        visibleItems += MainItem.BreakingBadFeature
 
         return visibleItems
     }
