@@ -1,1 +1,6 @@
-include ':app', ':core', ':transaction', ':cuvva'
+include ':app',
+        ':core',
+        ':features:transaction',
+        ':features:cuvva',
+        ':features:main',
+        ':features:breakingbad'

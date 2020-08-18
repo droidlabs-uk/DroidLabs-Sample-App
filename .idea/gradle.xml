@@ -12,8 +12,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/cuvva" />
-            <option value="$PROJECT_DIR$/transaction" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/breakingbad" />
+            <option value="$PROJECT_DIR$/features/cuvva" />
+            <option value="$PROJECT_DIR$/features/main" />
+            <option value="$PROJECT_DIR$/features/transaction" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

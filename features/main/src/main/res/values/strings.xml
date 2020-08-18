@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cuvvaFeature">Cuvva Feature</string>
+    <string name="transactionsFeature">Transactions Feature</string>
+    <string name="rxFeature">Rx Feature</string>
+    <string name="coroutineFeature">Coroutine Feature</string>
+    <string name="breakingBadFeature">Breaking Bad Feature</string>
+</resources>
