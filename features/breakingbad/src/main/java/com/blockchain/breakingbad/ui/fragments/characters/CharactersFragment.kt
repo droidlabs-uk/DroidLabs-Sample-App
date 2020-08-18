@@ -1,28 +1,33 @@
-package com.blockchain.breakingbad.ui
+package com.blockchain.breakingbad.ui.fragments.characters
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blockchain.breakingbad.R
 import com.blockchain.breakingbad.ui.adapter.BreakingBadActions
-import com.blockchain.breakingbad.ui.adapter.BreakingBadAdapterItemManager
 import com.blockchain.breakingbad.ui.adapter.DelegatingBreakingBadAdapter
 import com.blockchain.core.utils.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_characters.*
+import javax.inject.Inject
 
+class CharactersFragment : dagger.android.support.DaggerFragment() {
 
-class CharactersFragment : Fragment() {
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+
+    private val viewModel: CharactersViewModel by viewModels(factoryProducer = { factory })
 
     private val characterAdapter = DelegatingBreakingBadAdapter() { actions ->
         when (actions) {
             BreakingBadActions.CharacterClicked -> TODO()
         }
     }
-
-    private val breakingBadAdapterItemManager = BreakingBadAdapterItemManager()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +38,15 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initBreakingBadAdapter()
+
+        viewModel.getBreakingBadCharacters()
+
+        viewModel.charactersLiveData.observe(
+            this as LifecycleOwner,
+            Observer {
+                characterAdapter.items = it
+            }
+        )
     }
 
     private fun initBreakingBadAdapter() {
@@ -45,7 +59,5 @@ class CharactersFragment : Fragment() {
                 )
             )
         }
-
-        characterAdapter.items = breakingBadAdapterItemManager.getItems()
     }
 }

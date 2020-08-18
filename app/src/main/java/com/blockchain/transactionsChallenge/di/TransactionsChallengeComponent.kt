@@ -1,6 +1,7 @@
 package com.blockchain.transactionsChallenge.di
 
 import android.app.Application
+import com.blockchain.breakingbad.di.BreakingBadModule
 import com.blockchain.main.di.MainActivityProvider
 import com.blockchain.transaction.di.MainFragmentProvider
 import com.blockchain.transactionsChallenge.TransactionsChallengeApplication
@@ -15,7 +16,8 @@ import javax.inject.Singleton
         (AndroidInjectionModule::class),
         (NavigatorModule::class),
         (MainActivityProvider::class),
-        (MainFragmentProvider::class)
+        (MainFragmentProvider::class),
+        (BreakingBadModule::class)
     ]
 )
 interface ApplicationComponent {
