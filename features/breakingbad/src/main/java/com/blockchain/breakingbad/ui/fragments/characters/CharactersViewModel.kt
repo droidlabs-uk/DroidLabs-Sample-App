@@ -2,7 +2,6 @@ package com.blockchain.breakingbad.ui.fragments.characters
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStoreOwner
 import com.blockchain.breakingbad.ui.adapter.BreakingBadItem
 import com.blockchain.core.network.breakingbad.BreakingBadApiFactory
 import com.blockchain.core.network.breakingbad.BreakingBadRepository
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class CharactersViewModel /*@Inject constructor()*/ : ViewModel() {
+class CharactersViewModel @Inject constructor() : ViewModel() {
     var charactersLiveData = MutableLiveData<List<BreakingBadItem>>()
 
     private val parentJob = Job()

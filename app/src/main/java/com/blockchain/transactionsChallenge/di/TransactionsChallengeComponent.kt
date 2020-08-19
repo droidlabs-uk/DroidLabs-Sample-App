@@ -18,6 +18,7 @@ import javax.inject.Singleton
     modules = [
         (AndroidInjectionModule::class),
         (NavigatorModule::class),
+        (ViewModelModule::class),
         (MainActivityProvider::class),
 //        (MainFragmentProvider::class),
         (BreakingBadModule::class)

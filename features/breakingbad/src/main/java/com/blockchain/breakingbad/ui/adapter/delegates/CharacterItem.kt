@@ -6,6 +6,7 @@ import com.blockchain.breakingbad.R
 import com.blockchain.breakingbad.ui.adapter.BreakingBadActions
 import com.blockchain.breakingbad.ui.adapter.BreakingBadItem
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegate
+import com.squareup.picasso.Picasso
 
 fun getCharacters(clicks: (BreakingBadActions) -> Unit) =
     adapterDelegate<BreakingBadItem.CharacterItem, BreakingBadItem>(R.layout.bb_character_feature) {
@@ -14,8 +15,12 @@ fun getCharacters(clicks: (BreakingBadActions) -> Unit) =
         val characterBackground: ImageView = findViewById(R.id.bb_character_feature_background)
 
         bind {
-            characterName.setText(item.character.name)
-            //TODO: characterBackground via Picasso
+            characterName.text = item.character.name
+            Picasso
+                .get()
+                .load(item.character.imageUrl)
+                .resize(500, 500)
+                .into(characterBackground)
 
             itemView.setOnClickListener {
                 clicks(BreakingBadActions.CharacterClicked)
