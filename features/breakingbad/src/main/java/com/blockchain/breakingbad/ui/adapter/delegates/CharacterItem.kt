@@ -23,7 +23,7 @@ fun getCharacters(clicks: (BreakingBadActions) -> Unit) =
                 .into(characterBackground)
 
             itemView.setOnClickListener {
-                clicks(BreakingBadActions.CharacterClicked)
+                clicks(BreakingBadActions.CharacterClicked(adapterPosition))
             }
         }
     }
