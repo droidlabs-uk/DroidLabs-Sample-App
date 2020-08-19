@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class CharactersViewModel @Inject constructor() : ViewModel() {
+class CharactersViewModel /*@Inject constructor()*/ : ViewModel() {
     var charactersLiveData = MutableLiveData<List<BreakingBadItem>>()
 
     private val parentJob = Job()

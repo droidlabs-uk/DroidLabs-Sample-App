@@ -13,14 +13,14 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class BreakingBadModule {
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(CharactersViewModel::class)
-    internal abstract fun bindCharactersViewModel(
-        viewModel: CharactersViewModel
-    ): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(CharactersViewModel::class)
+//    internal abstract fun bindCharactersViewModel(
+//        viewModel: CharactersViewModel
+//    ): ViewModel
 
-    @FragmentScoped
+//    @FragmentScoped
     @ContributesAndroidInjector
-    internal abstract fun CharactersFragment(): CharactersFragment
+    internal abstract fun contributeCharactersFragment(): CharactersFragment
 }
