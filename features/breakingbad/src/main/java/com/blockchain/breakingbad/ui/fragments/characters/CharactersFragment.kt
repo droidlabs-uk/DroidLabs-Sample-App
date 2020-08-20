@@ -1,14 +1,16 @@
 package com.blockchain.breakingbad.ui.fragments.characters
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blockchain.breakingbad.R
 import com.blockchain.breakingbad.ui.adapter.BreakingBadActions
@@ -27,8 +29,7 @@ class CharactersFragment : DaggerFragment() {
 
     private val characterAdapter = DelegatingBreakingBadAdapter() { actions ->
         when (actions) {
-            is BreakingBadActions.CharacterClicked ->
-                Toast.makeText(requireContext(), "${actions.position}", Toast.LENGTH_LONG).show()
+            is BreakingBadActions.CharacterClicked -> navigateToDetailsFragment(actions.position)
         }
     }
 
@@ -62,5 +63,14 @@ class CharactersFragment : DaggerFragment() {
                 )
             )
         }
+    }
+
+    private fun navigateToDetailsFragment(position: Int) {
+        val navController =
+            Navigation.findNavController(activity as Activity, R.id.bb_nav_host_fragment)
+        navController.navigate(
+            R.id.action_charactersFragment_to_characterDetailsFragment,
+            bundleOf("position" to position)
+        )
     }
 }
