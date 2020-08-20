@@ -14,3 +14,5 @@ fun BreakingBadCharacter.toUIM() = BreakingBadItem.CharacterItem(
         imageUrl = img
     )
 )
+
+fun List<BreakingBadCharacter>.toItems(): List<BreakingBadItem> = map { it.toUIM() }

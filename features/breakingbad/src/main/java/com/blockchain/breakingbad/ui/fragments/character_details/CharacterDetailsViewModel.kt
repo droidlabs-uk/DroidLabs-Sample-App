@@ -2,6 +2,7 @@ package com.blockchain.breakingbad.ui.fragments.character_details
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.blockchain.breakingbad.ui.fragments.character_details.CharactersDetailsViewUIM.*
 import com.blockchain.core.network.breakingbad.BreakingBadApiFactory
 import com.blockchain.core.network.breakingbad.BreakingBadRepository
 import com.blockchain.core.network.breakingbad.datamodel.BreakingBadCharacter
@@ -17,7 +18,7 @@ class CharacterDetailsViewModel @Inject constructor() : ViewModel() {
         BreakingBadRepository(BreakingBadApiFactory.breakingBadAPI)
 
     fun getBreakingBadCharacterDetails(char_id: Int) {
-        characterDetailsLiveData.value = CharactersDetailsViewUIM.LoadingCharactersDetailsView
+        characterDetailsLiveData.value = LoadingCharactersDetailsView
 
         CoroutineScope(Dispatchers.Default).launch {
             val characterList = repository.getBreakingBadCharacters()
@@ -26,8 +27,8 @@ class CharacterDetailsViewModel @Inject constructor() : ViewModel() {
 
             characterDetailsLiveData.postValue(
                 when (character) {
-                    null -> CharactersDetailsViewUIM.ErrorCharactersDetailsView
-                    else -> CharactersDetailsViewUIM.SuccessCharactersDetailsView(character)
+                    null -> ErrorCharactersDetailsView
+                    else -> SuccessCharactersDetailsView(character)
                 }
             )
         }

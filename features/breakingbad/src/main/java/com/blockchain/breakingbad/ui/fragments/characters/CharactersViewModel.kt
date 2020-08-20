@@ -2,20 +2,18 @@ package com.blockchain.breakingbad.ui.fragments.characters
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.blockchain.breakingbad.ui.adapter.BreakingBadItem
+import com.blockchain.breakingbad.ui.fragments.characters.CharactersViewUIM.*
 import com.blockchain.breakingbad.ui.fragments.toUIM
 import com.blockchain.core.network.breakingbad.BreakingBadApiFactory
 import com.blockchain.core.network.breakingbad.BreakingBadRepository
 import com.blockchain.core.network.breakingbad.datamodel.BreakingBadCharacter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 class CharactersViewModel @Inject constructor() : ViewModel() {
-    var charactersLiveData = MutableLiveData<List<BreakingBadItem>>()
+    var charactersLiveData = MutableLiveData<CharactersViewUIM>()
 
     private val scope = CoroutineScope(Dispatchers.Default)
 
@@ -23,11 +21,24 @@ class CharactersViewModel @Inject constructor() : ViewModel() {
         BreakingBadRepository(BreakingBadApiFactory.breakingBadAPI)
 
     fun getBreakingBadCharacters() {
+        charactersLiveData.value = LoadingCharactersView
+
         scope.launch {
             val characters = repository.getBreakingBadCharacters()
-            charactersLiveData.postValue(characters.toUIM())
+            charactersLiveData.postValue(
+                when (characters) {
+                    null -> ErrorCharactersView
+                    else -> SuccessCharactersView(characters)
+                }
+            )
         }
     }
 }
 
-
+sealed class CharactersViewUIM {
+    object LoadingCharactersView : CharactersViewUIM()
+    data class SuccessCharactersView(
+        val breakingBadCharacters: List<BreakingBadCharacter>
+    ) : CharactersViewUIM()
+    object ErrorCharactersView : CharactersViewUIM()
+}
