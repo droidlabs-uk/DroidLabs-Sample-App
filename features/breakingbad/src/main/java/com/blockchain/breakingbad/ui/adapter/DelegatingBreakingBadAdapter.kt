@@ -2,7 +2,7 @@ package com.blockchain.breakingbad.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.blockchain.breakingbad.ui.adapter.delegates.getCharacters
-import com.blockchain.breakingbad.ui.fragments.BreakingBadCharacter
+import com.blockchain.breakingbad.ui.fragments.BreakingBadCharacterUIM
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 class DelegatingBreakingBadAdapter(clicks: (BreakingBadActions) -> Unit) :
@@ -31,5 +31,5 @@ sealed class BreakingBadActions {
 }
 
 sealed class BreakingBadItem {
-    data class CharacterItem(val character: BreakingBadCharacter) : BreakingBadItem()
+    data class CharacterItem(val character: BreakingBadCharacterUIM) : BreakingBadItem()
 }

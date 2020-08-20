@@ -7,6 +7,7 @@ import com.blockchain.breakingbad.ui.adapter.BreakingBadItem
 import com.blockchain.breakingbad.ui.fragments.toUIM
 import com.blockchain.core.network.breakingbad.BreakingBadApiFactory
 import com.blockchain.core.network.breakingbad.BreakingBadRepository
+import com.blockchain.core.network.breakingbad.datamodel.BreakingBadCharacter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +16,7 @@ import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 class CharacterDetailsViewModel @Inject constructor() : ViewModel() {
-    var characterDetailsLiveData = MutableLiveData<List<BreakingBadItem>>()
+    var characterDetailsLiveData = MutableLiveData<List<BreakingBadCharacter>>()
 
     private val repository: BreakingBadRepository =
         BreakingBadRepository(BreakingBadApiFactory.breakingBadAPI)
@@ -23,7 +24,7 @@ class CharacterDetailsViewModel @Inject constructor() : ViewModel() {
     fun getBreakingBadCharacterDetails() {
         CoroutineScope(Dispatchers.Default).launch {
             val characters = repository.getBreakingBadCharacters()
-            characterDetailsLiveData.postValue(characters.toUIM())
+            characterDetailsLiveData.postValue(characters)
         }
     }
 }

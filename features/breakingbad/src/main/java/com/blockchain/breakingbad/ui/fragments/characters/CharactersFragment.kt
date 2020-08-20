@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blockchain.breakingbad.R
 import com.blockchain.breakingbad.ui.adapter.BreakingBadActions
@@ -65,12 +65,10 @@ class CharactersFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToDetailsFragment(position: Int) {
-        val navController =
-            Navigation.findNavController(activity as Activity, R.id.bb_nav_host_fragment)
-        navController.navigate(
-            R.id.action_charactersFragment_to_characterDetailsFragment,
-            bundleOf("position" to position)
+    private fun navigateToDetailsFragment(adapterPosition: Int) {
+        findNavController().navigate(
+            CharactersFragmentDirections
+                .actionCharactersFragmentToCharacterDetailsFragment(position = adapterPosition)
         )
     }
 }
