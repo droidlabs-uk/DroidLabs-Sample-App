@@ -57,11 +57,13 @@ class CharacterDetailsFragment : DaggerFragment() {
     }
 
     private fun showLoading() {
+        fragment_character_details_container.visibility = View.GONE
         fragment_character_details_progressbar.visibility = View.VISIBLE
     }
 
     private fun showCharacter(character: BreakingBadCharacter) {
         fragment_character_details_progressbar.visibility = View.GONE
+        fragment_character_details_container.visibility = View.VISIBLE
 
         character.apply {
             Picasso
@@ -80,6 +82,7 @@ class CharacterDetailsFragment : DaggerFragment() {
 
     private fun showError() {
         fragment_character_details_progressbar.visibility = View.GONE
+        fragment_character_details_container.visibility = View.VISIBLE
 
         Toast.makeText(
             requireContext(),
