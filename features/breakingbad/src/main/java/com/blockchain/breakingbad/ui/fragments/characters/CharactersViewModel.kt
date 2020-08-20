@@ -17,12 +17,7 @@ import kotlin.coroutines.CoroutineContext
 class CharactersViewModel @Inject constructor() : ViewModel() {
     var charactersLiveData = MutableLiveData<List<BreakingBadItem>>()
 
-    private val parentJob = Job()
-
-    private val coroutineContext: CoroutineContext
-        get() = parentJob + Dispatchers.Default
-
-    private val scope = CoroutineScope(coroutineContext)
+    private val scope = CoroutineScope(Dispatchers.Default)
 
     private val repository: BreakingBadRepository =
         BreakingBadRepository(BreakingBadApiFactory.breakingBadAPI)
@@ -34,3 +29,5 @@ class CharactersViewModel @Inject constructor() : ViewModel() {
         }
     }
 }
+
+

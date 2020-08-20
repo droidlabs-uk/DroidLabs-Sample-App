@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_characters_details">
 
         <argument
-            android:name="position"
+            android:name="char_id"
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>

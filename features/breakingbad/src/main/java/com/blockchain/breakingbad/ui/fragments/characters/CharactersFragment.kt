@@ -29,7 +29,7 @@ class CharactersFragment : DaggerFragment() {
 
     private val characterAdapter = DelegatingBreakingBadAdapter() { actions ->
         when (actions) {
-            is BreakingBadActions.CharacterClicked -> navigateToDetailsFragment(actions.position)
+            is BreakingBadActions.CharacterClicked -> navigateToDetailsFragment(actions.char_id)
         }
     }
 
@@ -65,10 +65,10 @@ class CharactersFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToDetailsFragment(adapterPosition: Int) {
+    private fun navigateToDetailsFragment(char_id: Int) {
         findNavController().navigate(
             CharactersFragmentDirections
-                .actionCharactersFragmentToCharacterDetailsFragment(position = adapterPosition)
+                .actionCharactersFragmentToCharacterDetailsFragment(charId = char_id)
         )
     }
 }

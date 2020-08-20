@@ -27,7 +27,7 @@ class DelegatingBreakingBadAdapter(clicks: (BreakingBadActions) -> Unit) :
 }
 
 sealed class BreakingBadActions {
-    data class CharacterClicked(val position: Int) : BreakingBadActions()
+    data class CharacterClicked(val char_id: Int) : BreakingBadActions()
 }
 
 sealed class BreakingBadItem {

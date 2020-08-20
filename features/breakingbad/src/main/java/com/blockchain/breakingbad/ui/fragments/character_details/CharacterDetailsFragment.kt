@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.blockchain.breakingbad.R
+import com.blockchain.breakingbad.ui.fragments.character_details.CharactersDetailsViewUIM.*
 import com.blockchain.core.network.breakingbad.datamodel.BreakingBadCharacter
+import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_characters_details.*
 import javax.inject.Inject
@@ -33,28 +36,55 @@ class CharacterDetailsFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getBreakingBadCharacterDetails()
+        viewModel.getBreakingBadCharacterDetails(args.charId)
 
         viewModel.characterDetailsLiveData.observe(
             this as LifecycleOwner,
             Observer {
-                setBreakingBadCharacterDetails(it, args.position)
+                setBreakingBadCharacterDetails(it)
             }
         )
     }
 
     private fun setBreakingBadCharacterDetails(
-        characterDetails: List<BreakingBadCharacter>,
-        position: Int
+        uim: CharactersDetailsViewUIM
     ) {
+        when (uim) {
+            LoadingCharactersDetailsView -> showLoading()
+            is SuccessCharactersDetailsView -> showCharacter(uim.breakingBadCharacter)
+            ErrorCharactersDetailsView -> showError()
+        }
+    }
 
-        val character = characterDetails.filter { it.char_id == position }[0]
+    private fun showLoading() {
+        fragment_character_details_progressbar.visibility = View.VISIBLE
+    }
 
-        fragment_character_details_name.text = character.name
-        fragment_character_details_nickname.text = character.nickname
-        fragment_character_details_occupation_text.text = character.occupation.toString()
-        fragment_character_details_status_text.text = character.status
-        fragment_character_details_season_appearance_text.text = character.appearance.toString()
+    private fun showCharacter(character: BreakingBadCharacter) {
+        fragment_character_details_progressbar.visibility = View.GONE
 
+        character.apply {
+            Picasso
+                .get()
+                .load(img)
+                .resize(500, 500)
+                .into(fragment_character_details_image)
+
+            fragment_character_details_name.text = name
+            fragment_character_details_nickname.text = nickname
+            fragment_character_details_occupation_text.text = occupation.toString()
+            fragment_character_details_status_text.text = status
+            fragment_character_details_season_appearance_text.text = appearance.toString()
+        }
+    }
+
+    private fun showError() {
+        fragment_character_details_progressbar.visibility = View.GONE
+
+        Toast.makeText(
+            requireContext(),
+            "Error loading Character Details",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
