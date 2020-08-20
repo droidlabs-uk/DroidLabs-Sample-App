@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tools_character_name">Walter White</string>
+    <string name="tools_character_details_name">Walter White</string>
+    <string name="tools_character_details_nickname">Heisenberg</string>
+    <string name="tools_character_details_occupation">High School Chemistry Teacher, Meth King Pin</string>
+    <string name="tools_character_details_status">Presumed dead</string>
+    <string name="tools_character_details_season_appearance">1,2,3,4,5</string>
 </resources>
