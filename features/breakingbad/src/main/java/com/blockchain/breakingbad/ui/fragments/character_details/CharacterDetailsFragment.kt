@@ -74,9 +74,9 @@ class CharacterDetailsFragment : DaggerFragment() {
 
             fragment_character_details_name.text = name
             fragment_character_details_nickname.text = nickname
-            fragment_character_details_occupation_text.text = occupation.toString()
+            fragment_character_details_occupation_text.text = occupation.joinToString()
             fragment_character_details_status_text.text = status
-            fragment_character_details_season_appearance_text.text = appearance.toString()
+            fragment_character_details_season_appearance_text.text = appearance.joinToString()
         }
     }
 

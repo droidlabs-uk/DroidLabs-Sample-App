@@ -23,7 +23,10 @@
             android:id="@+id/fragment_character_details_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:alpha=".90"
             android:contentDescription="@string/simple_background_for_character_details_screen"
+            android:scaleType="fitXY"
+            android:src="@drawable/bb_background"
             app:layout_constraintDimensionRatio="W,2:3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +39,15 @@
             app:layout_constraintBottom_toBottomOf="@id/fragment_character_details_background"
             app:layout_constraintEnd_toEndOf="@id/fragment_character_details_background"
             app:layout_constraintStart_toStartOf="@id/fragment_character_details_background"
-            app:layout_constraintTop_toTopOf="@id/fragment_character_details_background" />
+            app:layout_constraintTop_toTopOf="@id/fragment_character_details_background"
+            app:layout_constraintVertical_bias="0.3" />
 
 
         <TextView
             android:id="@+id/fragment_character_details_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/fragment_character_details_image"
@@ -54,6 +59,7 @@
             android:id="@+id/fragment_character_details_nickname"
             android:layout_width="71dp"
             android:layout_height="22dp"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@id/fragment_character_details_name"
