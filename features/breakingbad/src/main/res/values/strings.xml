@@ -3,4 +3,5 @@
     <string name="fragment_character_details_occupation">Occupation:</string>
     <string name="fragment_character_details_status">Status:</string>
     <string name="fragment_character_details_season_appearance">Season Appearance:</string>
+    <string name="breaking_bad_title">Breaking Bad</string>
 </resources>

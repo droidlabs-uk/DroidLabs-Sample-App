@@ -59,6 +59,7 @@
             android:id="@+id/fragment_character_details_nickname"
             android:layout_width="71dp"
             android:layout_height="22dp"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="italic"

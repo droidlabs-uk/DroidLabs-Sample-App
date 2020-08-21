@@ -3,7 +3,8 @@
     package="com.blockchain.breakingbad">
 
     <application>
-        <activity android:name=".ui.BreakingBadActivity"></activity>
+        <activity
+            android:name=".ui.BreakingBadActivity"
+            android:theme="@style/BreakingBadTheme" />
     </application>
-
 </manifest>
