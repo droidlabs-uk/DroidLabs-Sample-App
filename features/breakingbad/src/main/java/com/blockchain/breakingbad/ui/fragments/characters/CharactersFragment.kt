@@ -1,10 +1,9 @@
 package com.blockchain.breakingbad.ui.fragments.characters
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -33,6 +32,11 @@ class CharactersFragment : DaggerFragment() {
         when (actions) {
             is BreakingBadActions.CharacterClicked -> navigateToDetailsFragment(actions.char_id)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -99,6 +103,26 @@ class CharactersFragment : DaggerFragment() {
             "Error loading Characters List",
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.clear()
+        inflater.inflate(R.menu.menu_bb, menu)
+
+        val searchView: SearchView = menu.findItem(R.id.menu_search)?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { viewModel.searchForCharacter(it) }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
     }
 }
 

@@ -33,6 +33,22 @@ class CharactersViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
+
+    fun searchForCharacter(query: String) {
+        charactersLiveData.value = LoadingCharactersView
+
+        scope.launch {
+            val characters =
+                repository.getBreakingBadCharacters()
+                    ?.filter { it.name.contains(query, ignoreCase = true) }
+            charactersLiveData.postValue(
+                when (characters) {
+                    null -> ErrorCharactersView
+                    else -> SuccessCharactersView(characters)
+                }
+            )
+        }
+    }
 }
 
 sealed class CharactersViewUIM {
@@ -40,5 +56,6 @@ sealed class CharactersViewUIM {
     data class SuccessCharactersView(
         val breakingBadCharacters: List<BreakingBadCharacter>
     ) : CharactersViewUIM()
+
     object ErrorCharactersView : CharactersViewUIM()
 }
