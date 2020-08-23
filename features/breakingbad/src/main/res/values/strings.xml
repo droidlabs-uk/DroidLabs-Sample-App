@@ -1,3 +1,9 @@
 <resources>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="simple_background_for_character_details_screen">Simple Background for Character Details screen</string>
+    <string name="fragment_character_details_occupation">Occupation:</string>
+    <string name="fragment_character_details_status">Status:</string>
+    <string name="fragment_character_details_season_appearance">Season Appearance:</string>
+    <string name="breaking_bad_title">Breaking Bad</string>
+    <string name="menu_search">Search</string>
+    <string name="search_hint">Click to search</string>
 </resources>

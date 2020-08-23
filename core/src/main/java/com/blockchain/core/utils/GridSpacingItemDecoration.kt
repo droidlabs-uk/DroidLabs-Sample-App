@@ -1,4 +1,4 @@
-package com.blockchain.main.utils
+package com.blockchain.core.utils
 
 import android.graphics.Rect
 import android.view.View

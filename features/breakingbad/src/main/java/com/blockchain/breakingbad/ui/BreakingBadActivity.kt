@@ -1,14 +1,18 @@
 package com.blockchain.breakingbad.ui
 
-import android.app.Activity
+import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.Navigation
 import com.blockchain.breakingbad.R
+import kotlinx.android.synthetic.main.activity_breaking_bad.*
 
 class BreakingBadActivity : AppCompatActivity() {
 
@@ -31,6 +35,9 @@ class BreakingBadActivity : AppCompatActivity() {
         setContentView(R.layout.activity_breaking_bad)
 
         initNavGraph()
+
+        activity_breaking_bad_toolbar.title = getString(R.string.breaking_bad_title)
+        setSupportActionBar(activity_breaking_bad_toolbar)
     }
 
     private fun initNavGraph() {
@@ -38,5 +45,10 @@ class BreakingBadActivity : AppCompatActivity() {
         navGraph = navController.navInflater.inflate(R.navigation.bb_nav_graph)
 
         navController.setGraph(R.navigation.bb_nav_graph)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -8,9 +8,9 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class MainFragmentProvider {
-    @ContributesAndroidInjector(modules = [(TransactionsFragmentModule::class)])
-    abstract fun bindTransactionsFragmentRx(): TransactionsFragmentRx
-
-    @ContributesAndroidInjector(modules = [(TransactionsFragmentModule::class)])
-    abstract fun bindTransactionsFragmentCoroutine(): TransactionsFragmentCoroutine
+//    @ContributesAndroidInjector(modules = [(TransactionsFragmentModule::class)])
+//    abstract fun bindTransactionsFragmentRx(): TransactionsFragmentRx
+//
+//    @ContributesAndroidInjector(modules = [(TransactionsFragmentModule::class)])
+//    abstract fun bindTransactionsFragmentCoroutine(): TransactionsFragmentCoroutine
 }

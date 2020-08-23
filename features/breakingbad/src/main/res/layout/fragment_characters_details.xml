@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/fragment_character_details_progressbar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_character_details_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/fragment_character_details_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha=".90"
+            android:contentDescription="@string/simple_background_for_character_details_screen"
+            android:scaleType="fitXY"
+            android:src="@drawable/bb_background"
+            app:layout_constraintDimensionRatio="W,2:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/fragment_character_details_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_character_details_background"
+            app:layout_constraintEnd_toEndOf="@id/fragment_character_details_background"
+            app:layout_constraintStart_toStartOf="@id/fragment_character_details_background"
+            app:layout_constraintTop_toTopOf="@id/fragment_character_details_background"
+            app:layout_constraintVertical_bias="0.3" />
+
+
+        <TextView
+            android:id="@+id/fragment_character_details_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/fragment_character_details_image"
+            app:layout_constraintStart_toStartOf="@id/fragment_character_details_image"
+            app:layout_constraintTop_toBottomOf="@id/fragment_character_details_image"
+            tools:text="@string/tools_character_details_name" />
+
+        <TextView
+            android:id="@+id/fragment_character_details_nickname"
+            android:layout_width="71dp"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@id/fragment_character_details_name"
+            app:layout_constraintStart_toStartOf="@id/fragment_character_details_name"
+            app:layout_constraintTop_toBottomOf="@id/fragment_character_details_name"
+            tools:text="@string/tools_character_details_nickname" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_spacing"
+            android:minHeight="@dimen/min_card_height"
+            app:cardCornerRadius="@dimen/small_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_character_details_background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/small_spacing">
+
+                <TextView
+                    android:id="@+id/fragment_character_details_occupation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_character_details_occupation"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/fragment_character_details_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fragment_character_details_occupation_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/extra_small_spacing"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/fragment_character_details_guideline"
+                    app:layout_constraintTop_toTopOf="@id/fragment_character_details_occupation"
+                    tools:text="@string/tools_character_details_occupation" />
+
+                <TextView
+                    android:id="@+id/fragment_character_details_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_character_details_status"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_character_details_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragment_character_details_status_text" />
+
+                <TextView
+                    android:id="@+id/fragment_character_details_status_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/extra_small_spacing"
+                    android:layout_marginTop="@dimen/extra_small_spacing"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/fragment_character_details_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_character_details_occupation_text"
+                    tools:text="@string/tools_character_details_status" />
+
+                <TextView
+                    android:id="@+id/fragment_character_details_season_appearance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_character_details_season_appearance"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/fragment_character_details_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragment_character_details_season_appearance_text" />
+
+                <TextView
+                    android:id="@+id/fragment_character_details_season_appearance_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/extra_small_spacing"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fragment_character_details_season_appearance"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_character_details_status_text"
+                    tools:text="@string/tools_character_details_season_appearance" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/fragment_character_details_guideline"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.3"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

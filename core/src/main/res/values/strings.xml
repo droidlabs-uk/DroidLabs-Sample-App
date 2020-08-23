@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Transactions</string>
     <string name="action_settings">Settings</string>
     <string name="title_network">network</string>
     <string name="title_core">Module Title</string>

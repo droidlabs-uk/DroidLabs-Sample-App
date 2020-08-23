@@ -22,8 +22,8 @@ import javax.inject.Inject
 
 class TransactionsFragmentRx: Fragment() {
 
-    @Inject
-    lateinit var presenter: ITransactionPresenter
+//    @Inject
+//    lateinit var presenter: ITransactionPresenter
 
     private val disposableBag = CompositeDisposable()
 
@@ -48,13 +48,13 @@ class TransactionsFragmentRx: Fragment() {
 
         val address = "xpub6CfLQa8fLgtouvLxrb8EtvjbXfoC1yqzH6YbTJw4dP7srt523AhcMV8Uh4K3TWSHz9oDWmn9MuJogzdGU3ncxkBsAC9wFBLmFrWT9Ek81kQ"
 
-        presenter.state
-            .observeOn(AndroidSchedulers.mainThread())
-            .retry()
-            .subscribe(this::render, this::streamError)
-            .also { disposableBag.add(it) }
-
-        viewIntent(address).subscribe(presenter.binder)
+//        presenter.state
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .retry()
+//            .subscribe(this::render, this::streamError)
+//            .also { disposableBag.add(it) }
+//
+//        viewIntent(address).subscribe(presenter.binder)
     }
 
     private fun initTransactionsRecyclerView(){
