@@ -3,6 +3,7 @@ package com.blockchain.transactionsChallenge.di
 import android.app.Application
 import android.content.Context
 import com.blockchain.breakingbad.di.BreakingBadModule
+import com.blockchain.core.network.breakingbad.di.BreakingBadRepositoryModule
 import com.blockchain.main.di.MainActivityProvider
 import com.blockchain.transaction.di.MainFragmentProvider
 import com.blockchain.transactionsChallenge.TransactionsChallengeApplication
@@ -21,7 +22,8 @@ import javax.inject.Singleton
         (ViewModelModule::class),
         (MainActivityProvider::class),
 //        (MainFragmentProvider::class),
-        (BreakingBadModule::class)
+        (BreakingBadModule::class),
+        (BreakingBadRepositoryModule::class)
     ]
 )
 

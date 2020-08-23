@@ -12,13 +12,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CharactersViewModel @Inject constructor() : ViewModel() {
+class CharactersViewModel @Inject constructor(
+    private val repository: BreakingBadRepository
+) : ViewModel() {
     var charactersLiveData = MutableLiveData<CharactersViewUIM>()
 
     private val scope = CoroutineScope(Dispatchers.Default)
-
-    private val repository: BreakingBadRepository =
-        BreakingBadRepository(BreakingBadApiFactory.breakingBadAPI)
 
     fun getBreakingBadCharacters() {
         charactersLiveData.value = LoadingCharactersView

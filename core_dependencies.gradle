@@ -58,4 +58,8 @@ dependencies {
 
     // Picasso
     implementation "com.squareup.picasso:picasso:2.71828"
+
+    // Test
+    implementation 'androidx.arch.core:core-testing:2.1.0'
+    implementation "com.google.truth:truth:1.0.1"
 }

@@ -11,11 +11,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CharacterDetailsViewModel @Inject constructor() : ViewModel() {
+class CharacterDetailsViewModel @Inject constructor(
+    private val repository: BreakingBadRepository
+) : ViewModel() {
     var characterDetailsLiveData = MutableLiveData<CharactersDetailsViewUIM>()
-
-    private val repository: BreakingBadRepository =
-        BreakingBadRepository(BreakingBadApiFactory.breakingBadAPI)
 
     fun getBreakingBadCharacterDetails(char_id: Int) {
         characterDetailsLiveData.value = LoadingCharactersDetailsView
