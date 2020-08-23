@@ -123,6 +123,11 @@ class CharactersFragment : DaggerFragment() {
                 return false
             }
         })
+
+        searchView.setOnCloseListener {
+            viewModel.getBreakingBadCharacters()
+            false
+        }
     }
 }
 
