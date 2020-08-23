@@ -9,7 +9,7 @@ apply from: '../core_dependencies.gradle'
 android {
     compileSdkVersion 30
     defaultConfig {
-        applicationId "com.blockchain.transactionsChallenge"
+        applicationId "com.droidlabs"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
