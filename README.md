@@ -36,5 +36,5 @@ issus such as:
 - Room DB - persistence layer / caching
 
 ###### Breaking Bad Sample
-[breaking_bad1.webp](app/src/main/res/mipmap-hdpi/breaking_bad1.webp)
-[breaking_bad2.webp](app/src/main/res/mipmap-hdpi/breaking_bad2.webp)
+![breaking_bad1.png](app/src/main/res/mipmap-hdpi/breaking_bad1.png)
+![breaking_bad2.png](app/src/main/res/mipmap-hdpi/breaking_bad2.png)
