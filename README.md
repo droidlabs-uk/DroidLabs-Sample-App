@@ -1,9 +1,13 @@
 # DroidLabs Sample App
+
 Twitter: @DroidLabs
 
 ### Objective
-This is a demonstration project from DroidLabs to show off tech solutions and engineering skill to potential clients.
-Additionally, it serves as a working reference guide incorporating solutions for common issus such as:
+
+This is a demonstration project from DroidLabs to show off tech
+solutions and engineering skill to potential clients. Additionally, it
+serves as a working reference guide incorporating solutions for common
+issus such as:
 - inter-module navigation
 - Dagger2
 - Coroutine Testing
@@ -11,17 +15,19 @@ Additionally, it serves as a working reference guide incorporating solutions for
 - Clean Architecture
 
 ##### Demonstrated:
+
 - modularised application
 - Dagger2 dependency injection
-- Retrofit 
+- Retrofit
 - RxAndroid / RxJava
-- MVI - architecture 
+- MVI - architecture
 - Coroutines
 - JUnit4 Testing
 - proper Gradle dependency setup
 - simple UI via RecyclerView
 
 ##### Upcoming:
+
 - navigation interface between fragments
 - BottomNavigationBar / Tabbed Layout
 - Animation filling the list top to bottom
@@ -30,5 +36,5 @@ Additionally, it serves as a working reference guide incorporating solutions for
 - Room DB - persistence layer / caching
 
 ###### Breaking Bad Sample
-![BreakingBad1](app/src/main/res/mipmap-hdpi/breaking_bad1.png)
-![BreakingBad1](app/src/main/res/mipmap-hdpi/breaking_bad2.png)
+[breaking_bad1.webp](app/src/main/res/mipmap-hdpi/breaking_bad1.webp)
+[breaking_bad2.webp](app/src/main/res/mipmap-hdpi/breaking_bad2.webp)
