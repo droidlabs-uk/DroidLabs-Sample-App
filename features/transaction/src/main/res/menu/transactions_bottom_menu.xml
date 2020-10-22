@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/rx_fragment"
+        android:icon="@drawable/build_black_24dp"
+        android:title="RxJava" />
+    <item
+        android:id="@+id/coroutine_fragment"
+        android:icon="@drawable/settings_black_24dp"
+        android:title="Coroutine" />
+</menu>

@@ -10,8 +10,6 @@ class DelegatingMainAdapter(
     diffUtil,
     cuvvaFeature(clicks),
     transactionsFeature(clicks),
-    rxFeature(clicks),
-    coroutineFeature(clicks),
     breakingBadFeature(clicks)
 ) {
     companion object {
@@ -33,15 +31,11 @@ class DelegatingMainAdapter(
 sealed class MainActions {
     object CuvvaFeatureClicked : MainActions()
     object TransactionsFeatureClicked : MainActions()
-    object RxFeatureClicked : MainActions()
-    object CoroutineFeatureClicked : MainActions()
     object BreakingBadFeatureClicked : MainActions()
 }
 
 sealed class MainItem {
     object CuvvaFeature : MainItem()
     object TransactionsFeature : MainItem()
-    object RxFeature : MainItem()
-    object CoroutineFeature : MainItem()
     object BreakingBadFeature : MainItem()
 }

@@ -11,28 +11,47 @@ import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.ITransactio
 import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
 import dagger.Module
 import dagger.Provides
+import dagger.android.ContributesAndroidInjector
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
-@Module
+@Module(includes = [TransactionsFragmentModule.BindsModule::class])
 class TransactionsFragmentModule {
-//    @Provides
-//    fun provideTransactionsFragmentRx(transactionsFragmentRx: TransactionsFragmentRx): TransactionsFragmentRx = transactionsFragmentRx
-//
-//    @Provides
-//    fun provideTransactionsFragmentCoroutine(transactionsFragmentCoroutine: TransactionsFragmentCoroutine): TransactionsFragmentCoroutine = transactionsFragmentCoroutine
-//
-//    @Provides
-//    fun transactionPresenter(transactionProcessor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter =
-//        TransactionPresenter(transactionProcessor, scheduler)
-//
-//    @Provides
-//    fun provideTransactionsProcessor(interactor: ITransactionsInteractor, scheduler: Scheduler): ITransactionProcessor =
-//        DefaultTransactionProcessor(interactor, scheduler)
-//
-//    @Provides
-//    fun provideTransactionsInteractor(): ITransactionsInteractor = TransactionsInteractor(BlockchainApiFactory.blockchainAPI)
-//
-//    @Provides
-//    fun provideRxScheduler(): Scheduler =  Schedulers.computation()
+
+    @Module
+    abstract class BindsModule {
+        @ContributesAndroidInjector()
+        abstract fun bindTransactionsFragmentRx(): TransactionsFragmentRx
+    }
+
+    @Provides
+    fun provideTransactionsFragmentRx(
+            transactionsFragmentRx: TransactionsFragmentRx
+    ): TransactionsFragmentRx = transactionsFragmentRx
+
+    @Provides
+    fun provideTransactionsFragmentCoroutine(
+            transactionsFragmentCoroutine: TransactionsFragmentCoroutine
+    ): TransactionsFragmentCoroutine = transactionsFragmentCoroutine
+
+    @Provides
+    fun transactionPresenter(
+            transactionProcessor: ITransactionProcessor,
+            scheduler: Scheduler
+    ): ITransactionPresenter =
+            TransactionPresenter(transactionProcessor, scheduler)
+
+    @Provides
+    fun provideTransactionsProcessor(
+            interactor: ITransactionsInteractor,
+            scheduler: Scheduler
+    ): ITransactionProcessor =
+            DefaultTransactionProcessor(interactor, scheduler)
+
+    @Provides
+    fun provideTransactionsInteractor(): ITransactionsInteractor =
+            TransactionsInteractor(BlockchainApiFactory.blockchainAPI)
+
+    @Provides
+    fun provideRxScheduler(): Scheduler = Schedulers.computation()
 }

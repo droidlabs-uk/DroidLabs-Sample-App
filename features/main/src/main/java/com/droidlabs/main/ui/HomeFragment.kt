@@ -31,14 +31,6 @@ class HomeFragment : DaggerFragment() {
                 NavigationDest.Transactions,
                 requireContext()
             )
-            MainActions.RxFeatureClicked -> navigator.navigateTo(
-                NavigationDest.Rx,
-                requireContext()
-            )
-            MainActions.CoroutineFeatureClicked -> navigator.navigateTo(
-                NavigationDest.Coroutine,
-                requireContext()
-            )
             MainActions.BreakingBadFeatureClicked -> navigator.navigateTo(
                 NavigationDest.BreakingBad,
                 requireContext()
