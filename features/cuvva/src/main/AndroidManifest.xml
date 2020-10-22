@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.droidlabs.cuvva" />
+    package="com.droidlabs.cuvva">
+
+    <application>
+        <activity android:name="com.droidlabs.cuvva.ui.home.CuvvaActivity" />
+    </application>
+</manifest>
