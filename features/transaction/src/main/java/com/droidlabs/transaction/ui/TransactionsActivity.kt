@@ -13,6 +13,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class TransactionsActivity : AppCompatActivity() {
+
+    private val transactionsFragmentRx = TransactionsFragmentRx()
+    private val transactionsFragmentCoroutine by lazy { TransactionsFragmentCoroutine() }
+
     companion object {
         fun launchActivity(context: Context) {
             context.startActivity(
@@ -36,7 +40,7 @@ class TransactionsActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(
                 R.id.transactions_fragment_container,
-                TransactionsFragmentRx()
+                transactionsFragmentRx
             ).commit()
 
     }
@@ -46,8 +50,8 @@ class TransactionsActivity : AppCompatActivity() {
             var selectedFragment: Fragment? = null
 
             when (item.itemId) {
-                R.id.rx_fragment -> selectedFragment = TransactionsFragmentRx()
-                R.id.coroutine_fragment -> selectedFragment = TransactionsFragmentCoroutine()
+                R.id.rx_fragment -> selectedFragment = transactionsFragmentRx
+                R.id.coroutine_fragment -> selectedFragment = transactionsFragmentCoroutine
             }
 
             selectedFragment?.let {

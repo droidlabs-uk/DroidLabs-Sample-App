@@ -5,7 +5,7 @@ import com.droidlabs.core.network.transaction.api.datamodel.Txs
 data class TransactionViewState (
     val transactions: List<Txs> = listOf(),
     val transactionsError: ErrorViewState = ErrorViewState(),
-    val transactionsLoading: Boolean = false
+    val transactionsLoading: Boolean = true
 ) {
     fun isLoading(): Boolean = transactionsLoading
 }
