@@ -1,12 +1,7 @@
-<manifest
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:dist="http://schemas.android.com/apk/distribution"
-        package="com.droidlabs.transaction">
-    <dist:module
-            dist:onDemand="false"
-            dist:instant="false"
-            dist:title="@string/title_transaction">
-        <dist:fusing dist:include="true"/>
-    </dist:module>
-</manifest>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.droidlabs.transaction">
 
+    <application>
+        <activity android:name="com.droidlabs.transaction.ui.TransactionsActivity" />
+    </application>
+</manifest>

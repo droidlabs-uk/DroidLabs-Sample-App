@@ -1,7 +1,7 @@
 package com.droidlabs.transactionsChallenge.di
 
 import com.droidlabs.core.navigation.Navigator
-import com.droidlabs.transactionsChallenge.navigation.NavigatorImpl
+import com.droidlabs.app.navigation.NavigatorImpl
 import dagger.Binds
 import dagger.Module
 
