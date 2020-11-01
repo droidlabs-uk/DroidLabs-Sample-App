@@ -34,7 +34,3 @@ issus such as:
 - detailed view of each transaction
 - better abstracted network layer
 - Room DB - persistence layer / caching
-
-###### Breaking Bad Sample
-![breaking_bad1.png](app/src/main/res/mipmap-hdpi/breaking_bad1.png)
-![breaking_bad2.png](app/src/main/res/mipmap-hdpi/breaking_bad2.png)
