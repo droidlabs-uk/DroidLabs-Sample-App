@@ -26,7 +26,7 @@ jobs:
         run: ./gradlew assembleRelease
 
       - name: Sign Release
-        uses: droidlabs-uk/sign-android-release@v1
+        uses: jobobby04/sign-android-release@v1
         with:
           releaseDirectory: app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
