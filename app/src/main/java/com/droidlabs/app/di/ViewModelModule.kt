@@ -1,9 +1,13 @@
-package com.droidlabs.transactionsChallenge.di
+package com.droidlabs.app.di
 
 import androidx.lifecycle.ViewModelProvider
+import com.droidlabs.transactionsChallenge.di.DroidLabsViewModelFactory
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 abstract class ViewModelModule {
     @Binds

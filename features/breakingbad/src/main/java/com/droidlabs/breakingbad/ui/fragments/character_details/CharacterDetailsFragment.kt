@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -14,11 +15,12 @@ import com.droidlabs.breakingbad.R
 import com.droidlabs.breakingbad.ui.fragments.character_details.CharactersDetailsViewUIM.*
 import com.droidlabs.core.network.breakingbad.datamodel.BreakingBadCharacter
 import com.squareup.picasso.Picasso
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_characters_details.*
 import javax.inject.Inject
 
-class CharacterDetailsFragment : DaggerFragment() {
+@AndroidEntryPoint
+class CharacterDetailsFragment : Fragment() {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory

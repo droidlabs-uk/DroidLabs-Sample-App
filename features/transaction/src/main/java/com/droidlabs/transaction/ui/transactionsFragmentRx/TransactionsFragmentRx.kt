@@ -13,15 +13,15 @@ import com.droidlabs.transaction.ui.transactionsFragmentRx.events.InitialIntent
 import com.droidlabs.transaction.ui.transactionsFragmentRx.events.TransactionIntent
 import com.droidlabs.transaction.ui.transactionsFragmentRx.events.TransactionViewState
 import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.ITransactionPresenter
-import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_transactions.*
 import javax.inject.Inject
 
-class TransactionsFragmentRx : DaggerFragment() {
+@AndroidEntryPoint
+class TransactionsFragmentRx : Fragment() {
 
     @Inject
     lateinit var presenter: ITransactionPresenter

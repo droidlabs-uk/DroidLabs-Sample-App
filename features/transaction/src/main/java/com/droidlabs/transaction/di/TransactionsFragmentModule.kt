@@ -11,18 +11,14 @@ import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.ITransactio
 import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
 import dagger.Module
 import dagger.Provides
-import dagger.android.ContributesAndroidInjector
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
-@Module(includes = [TransactionsFragmentModule.BindsModule::class])
+@InstallIn(SingletonComponent::class)
+@Module
 class TransactionsFragmentModule {
-
-    @Module
-    abstract class BindsModule {
-        @ContributesAndroidInjector()
-        abstract fun bindTransactionsFragmentRx(): TransactionsFragmentRx
-    }
 
     @Provides
     fun provideTransactionsFragmentRx(

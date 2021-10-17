@@ -1,11 +1,7 @@
-package com.droidlabs.transactionsChallenge
+package com.droidlabs.app
 
-import com.droidlabs.transactionsChallenge.di.DaggerApplicationComponent
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class TransactionsChallengeApplication : DaggerApplication() {
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerApplicationComponent.factory().create(this)
-}
+@HiltAndroidApp
+class DroidLabsApplication : Application()
