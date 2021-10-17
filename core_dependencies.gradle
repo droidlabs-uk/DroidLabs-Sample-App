@@ -62,4 +62,8 @@ dependencies {
     // Test
     implementation 'androidx.arch.core:core-testing:2.1.0'
     implementation "com.google.truth:truth:1.0.1"
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 }
