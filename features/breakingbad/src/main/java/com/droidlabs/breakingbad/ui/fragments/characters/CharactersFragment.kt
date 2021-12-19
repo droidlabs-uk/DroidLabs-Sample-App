@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -12,16 +13,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.droidlabs.breakingbad.R
 import com.droidlabs.breakingbad.ui.adapter.BreakingBadActions
-import com.droidlabs.breakingbad.ui.adapter.BreakingBadItem
 import com.droidlabs.breakingbad.ui.adapter.DelegatingBreakingBadAdapter
 import com.droidlabs.breakingbad.ui.fragments.toItems
 import com.droidlabs.core.network.breakingbad.datamodel.BreakingBadCharacter
 import com.droidlabs.core.utils.GridSpacingItemDecoration
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_characters.*
 import javax.inject.Inject
 
-class CharactersFragment : DaggerFragment() {
+@AndroidEntryPoint
+class CharactersFragment : Fragment() {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory

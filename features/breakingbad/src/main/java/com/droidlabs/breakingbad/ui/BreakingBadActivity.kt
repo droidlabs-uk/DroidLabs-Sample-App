@@ -1,19 +1,17 @@
 package com.droidlabs.breakingbad.ui
 
-import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.Navigation
 import com.droidlabs.breakingbad.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_breaking_bad.*
 
+@AndroidEntryPoint
 class BreakingBadActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

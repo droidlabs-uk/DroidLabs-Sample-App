@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.droidlabs.cuvva.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CuvvaActivity : AppCompatActivity() {
     companion object {
         fun launchActivity(context: Context) {

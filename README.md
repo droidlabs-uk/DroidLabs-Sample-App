@@ -9,7 +9,7 @@ solutions and engineering skill to potential clients. Additionally, it
 serves as a working reference guide incorporating solutions for common
 issus such as:
 - inter-module navigation
-- Dagger2
+- Hilt instead of Dagger2
 - Coroutine Testing
 - MVI
 - Clean Architecture
@@ -17,7 +17,7 @@ issus such as:
 ##### Demonstrated:
 
 - modularised application
-- Dagger2 dependency injection
+- Hilt dependency injection
 - Retrofit
 - RxAndroid / RxJava
 - MVI - architecture

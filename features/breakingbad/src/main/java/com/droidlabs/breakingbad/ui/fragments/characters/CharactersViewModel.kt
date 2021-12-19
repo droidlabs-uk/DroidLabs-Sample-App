@@ -7,11 +7,13 @@ import com.droidlabs.breakingbad.ui.fragments.toUIM
 import com.droidlabs.core.network.breakingbad.BreakingBadApiFactory
 import com.droidlabs.core.network.breakingbad.BreakingBadRepository
 import com.droidlabs.core.network.breakingbad.datamodel.BreakingBadCharacter
+import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+//@ActivityScoped
 class CharactersViewModel @Inject constructor(
     private val repository: BreakingBadRepository
 ) : ViewModel() {

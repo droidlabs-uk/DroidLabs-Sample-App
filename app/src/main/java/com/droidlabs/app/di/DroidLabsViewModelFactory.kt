@@ -1,4 +1,4 @@
-package com.droidlabs.transactionsChallenge.di
+package com.droidlabs.app.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

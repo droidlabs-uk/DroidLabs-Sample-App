@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.droidlabs.core.navigation.NavigationDest
 import com.droidlabs.core.navigation.Navigator
@@ -12,11 +13,12 @@ import com.droidlabs.main.R
 import com.droidlabs.main.ui.adapter.DelegatingMainAdapter
 import com.droidlabs.main.ui.adapter.HomeAdapterItemManager
 import com.droidlabs.main.ui.adapter.MainActions
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
 import javax.inject.Inject
 
-class HomeFragment : DaggerFragment() {
+@AndroidEntryPoint
+class HomeFragment : Fragment() {
 
     @Inject
     lateinit var navigator: Navigator
