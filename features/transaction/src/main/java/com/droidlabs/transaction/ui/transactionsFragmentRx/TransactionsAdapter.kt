@@ -12,6 +12,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.droidlabs.core.network.transaction.api.datamodel.Txs
 import com.droidlabs.transaction.R
+import com.droidlabs.transaction.utils.convertSatoshiToBTC
+import com.droidlabs.transaction.utils.isNegative
+import com.droidlabs.transaction.utils.prettyDateString
 import kotlinx.android.synthetic.main.itemview_transaction.view.*
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -54,16 +57,6 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsViewholder>() {
 
     private fun setAmount(result: Int) = "${convertSatoshiToBTC(result)} BTC"
 }
-
-fun prettyDateString(milliseconds: Long): String {
-    val formatter = SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss z", Locale.UK).apply { timeZone = TimeZone.getTimeZone("UTC") }
-    return formatter.format(Date(milliseconds))
-}
-
-fun convertSatoshiToBTC(satoshi: Int): BigDecimal =
-    BigDecimal(satoshi.toDouble() / 100000000).setScale(8, RoundingMode.HALF_EVEN)
-
-fun Int.isNegative() = this < 0
 
 class TransactionsViewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val transactionTime: TextView = itemView.itemview_transaction_time
