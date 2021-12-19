@@ -5,6 +5,7 @@
     <application>
         <activity
             android:name="com.droidlabs.breakingbad.ui.BreakingBadActivity"
+            android:exported="true"
             android:theme="@style/BreakingBadTheme">
 
             <intent-filter>

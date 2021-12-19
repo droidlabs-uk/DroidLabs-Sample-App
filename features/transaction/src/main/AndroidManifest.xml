@@ -2,6 +2,8 @@
     package="com.droidlabs.transaction">
 
     <application>
-        <activity android:name="com.droidlabs.transaction.ui.TransactionsActivity" />
+        <activity
+            android:name="com.droidlabs.transaction.ui.TransactionsActivity"
+            android:exported="true" />
     </application>
 </manifest>
