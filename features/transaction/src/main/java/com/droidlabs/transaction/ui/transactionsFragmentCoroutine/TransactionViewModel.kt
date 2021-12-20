@@ -17,11 +17,12 @@ class TransactionViewModel : ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository: BlockchainRepository = BlockchainRepository(BlockchainApiFactory.blockchainAPI)
+    private val repository: BlockchainRepository =
+        BlockchainRepository(BlockchainApiFactory.blockchainAPI)
 
-    val multiAddressLiveData =  MutableLiveData<BlockchainMultiAddressResponse>()
+    val multiAddressLiveData = MutableLiveData<BlockchainMultiAddressResponse>()
 
-    fun fetchMultiAddress(address: String){
+    fun fetchMultiAddress(address: String) {
         scope.launch {
             val multiAddress = repository.getMultiAddress(address)
             multiAddressLiveData.postValue(multiAddress)
