@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 
 @InstallIn(SingletonComponent::class)
 @Module
-class TransactionsFragmentModule {
+class TransactionModule {
 
     @Provides
     fun provideTransactionsFragmentRx(

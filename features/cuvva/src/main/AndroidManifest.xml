@@ -2,6 +2,8 @@
     package="com.droidlabs.cuvva">
 
     <application>
-        <activity android:name="com.droidlabs.cuvva.ui.home.CuvvaActivity" />
+        <activity
+            android:name="com.droidlabs.cuvva.ui.home.CuvvaActivity"
+            android:exported="true" />
     </application>
 </manifest>

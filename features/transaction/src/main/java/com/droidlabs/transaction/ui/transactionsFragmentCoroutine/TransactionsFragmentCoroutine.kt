@@ -4,35 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.droidlabs.transaction.R
-import com.droidlabs.transaction.ui.transactionsFragmentRx.TransactionsAdapter
-import kotlinx.android.synthetic.main.fragment_transactions.*
+import com.droidlabs.transaction.ui.compose.TransactionComposeList
+import com.droidlabs.transaction.ui.compose.toViewState
 
 
 class TransactionsFragmentCoroutine : Fragment() {
 
     private lateinit var transactionViewModel: TransactionViewModel
 
-    private val transactionsAdapter by lazy { TransactionsAdapter() }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        layoutInflater.inflate(R.layout.fragment_transactions, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        initTransactionsRecyclerView()
-    }
-
+    ): View =
+        ComposeView(requireContext()).apply {
+            setContent {
+                TransactionsFragmentCoroutineView(transactionViewModel)
+            }
+        }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,25 +38,25 @@ class TransactionsFragmentCoroutine : Fragment() {
         transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel::class.java)
 
         transactionViewModel.fetchMultiAddress(address)
-
-        transactionViewModel.multiAddressLiveData.observe(viewLifecycleOwner, Observer {
-            transactionsAdapter.transactions = it.txs
-        })
-    }
-
-    private fun initTransactionsRecyclerView() {
-        val linearLayoutManager = LinearLayoutManager(context)
-
-        fragment_transactions_recyclerview.apply {
-            adapter = transactionsAdapter
-            layoutManager = linearLayoutManager
-            addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
-        }
     }
 
     override fun onStop() {
         transactionViewModel.cancelAllRequests()
 
         super.onStop()
+    }
+
+    @Composable
+    private fun TransactionsFragmentCoroutineView(
+        transactionViewModel: TransactionViewModel
+    ) {
+        val transactions by transactionViewModel.multiAddressLiveData.observeAsState()
+
+        transactions?.txs?.let {
+            when {
+                it.isEmpty() -> TransactionComposeList(itemViewStates = listOf())
+                else -> TransactionComposeList(itemViewStates = it.toViewState())
+            }
+        }
     }
 }
