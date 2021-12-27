@@ -51,4 +51,8 @@ dependencies {
     implementation(Deps.Navigation.fragment)
 
     implementation(Deps.Picasso.picasso)
+
+    testImplementation(Deps.Test.mockK)
+    testImplementation(Deps.Test.junit4)
+    testImplementation(Deps.Test.archTesting)
 }

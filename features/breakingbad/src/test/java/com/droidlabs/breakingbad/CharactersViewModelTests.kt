@@ -1,22 +1,19 @@
 package com.droidlabs.breakingbad
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.droidlabs.breakingbad.ui.fragments.characters.CharactersViewUIM
 import androidx.lifecycle.Observer
 import com.droidlabs.breakingbad.ui.fragments.characters.CharactersViewModel
+import com.droidlabs.breakingbad.ui.fragments.characters.CharactersViewUIM
 import com.droidlabs.core.network.breakingbad.BreakingBadRepository
 import com.droidlabs.core.network.breakingbad.datamodel.BreakingBadCharacter
 import com.droidlabs.core.utils.captureValues
-import io.mockk.*
-import io.reactivex.Single
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.*
 
 class CharactersViewModelTests {
 

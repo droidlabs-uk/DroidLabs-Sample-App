@@ -59,4 +59,7 @@ dependencies {
     implementation(Deps.Compose.material)
 
     implementation(Deps.Retrofit.retrofit)
+
+    testImplementation(Deps.Test.mockK)
+    testImplementation(Deps.Test.junit4)
 }

@@ -6,9 +6,6 @@ object Deps {
         const val coreKtx = "androidx.core:core-ktx:1.7.0-rc01"
         const val constaintLayout = "androidx.constraintlayout:constraintlayout:2.1.2"
         const val material = "com.google.android.material:material:1.5.0-alpha04"
-        const val junit4 = "junit:junit:4.13.2"
-//        androidTestImplementation 'androidx.test:runner:1.4.1-alpha03'
-//        androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-alpha03'
     }
 
     object Retrofit {
@@ -39,10 +36,6 @@ object Deps {
         const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
     }
 
-    object MockK {
-        const val mockK = "io.mockk:mockk:1.10.0"
-    }
-
     object Navigation {
         const val ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
         const val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -59,6 +52,8 @@ object Deps {
     object Test {
         const val archTesting = "androidx.arch.core:core-testing:2.1.0"
         const val truth = "com.google.truth:truth:1.0.1"
+        const val mockK = "io.mockk:mockk:1.10.0"
+        const val junit4 = "junit:junit:4.13.2"
     }
 
     object Hilt {
@@ -81,6 +76,8 @@ object Deps {
 
     object UiTests {
 //    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.5'
+//    androidTestImplementation 'androidx.test:runner:1.4.1-alpha03'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-alpha03'
     }
 
     //TODO: To be removed soon

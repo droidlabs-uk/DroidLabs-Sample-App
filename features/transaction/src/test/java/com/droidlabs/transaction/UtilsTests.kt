@@ -1,8 +1,8 @@
 package com.droidlabs.transaction
 
-import com.droidlabs.transaction.ui.transactionsFragmentRx.convertSatoshiToBTC
-import com.droidlabs.transaction.ui.transactionsFragmentRx.isNegative
-import com.droidlabs.transaction.ui.transactionsFragmentRx.prettyDateString
+import com.droidlabs.transaction.utils.convertSatoshiToBTC
+import com.droidlabs.transaction.utils.isNegative
+import com.droidlabs.transaction.utils.prettyDateString
 import org.junit.Assert.*
 import org.junit.Test
 
