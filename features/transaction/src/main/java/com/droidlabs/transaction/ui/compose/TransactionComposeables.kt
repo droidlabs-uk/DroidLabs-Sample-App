@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidlabs.core.network.transaction.api.datamodel.Txs
 import com.droidlabs.transaction.R
-import com.droidlabs.transaction.ui.transactionsFragmentCoroutine.TransactionsFragmentCoroutine
 import com.droidlabs.transaction.utils.convertSatoshiToBTC
 import com.droidlabs.transaction.utils.isNegative
 import com.droidlabs.transaction.utils.prettyDateString

@@ -1,51 +1,41 @@
 package com.droidlabs.breakingbad.ui.fragments.character_details
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.droidlabs.breakingbad.R
+import com.droidlabs.breakingbad.databinding.FragmentCharactersDetailsBinding
 import com.droidlabs.breakingbad.ui.fragments.character_details.CharactersDetailsViewUIM.*
 import com.droidlabs.core.network.breakingbad.datamodel.BreakingBadCharacter
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_characters_details.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CharacterDetailsFragment : Fragment() {
+class CharacterDetailsFragment : Fragment(R.layout.fragment_characters_details) {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
-
     private val viewModel: CharacterDetailsViewModel by viewModels(factoryProducer = { factory })
+
+    private lateinit var binding: FragmentCharactersDetailsBinding
 
     private val args: CharacterDetailsFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_characters_details, container, false)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentCharactersDetailsBinding.bind(view)
 
         viewModel.getBreakingBadCharacterDetails(args.charId)
 
-        viewModel.characterDetailsLiveData.observe(
-            this as LifecycleOwner,
-            Observer {
-                setBreakingBadCharacterDetails(it)
-            }
-        )
+        viewModel.characterDetailsLiveData.observe(this as LifecycleOwner) {
+            setBreakingBadCharacterDetails(it)
+        }
     }
 
     private fun setBreakingBadCharacterDetails(
@@ -59,32 +49,32 @@ class CharacterDetailsFragment : Fragment() {
     }
 
     private fun showLoading() {
-        fragment_character_details_container.visibility = View.GONE
-        fragment_character_details_progressbar.visibility = View.VISIBLE
+        binding.fragmentCharacterDetailsContainer.visibility = View.GONE
+        binding.fragmentCharacterDetailsProgressbar.visibility = View.VISIBLE
     }
 
     private fun showCharacter(character: BreakingBadCharacter) {
-        fragment_character_details_progressbar.visibility = View.GONE
-        fragment_character_details_container.visibility = View.VISIBLE
+        binding.fragmentCharacterDetailsProgressbar.visibility = View.GONE
+        binding.fragmentCharacterDetailsContainer.visibility = View.VISIBLE
 
         character.apply {
             Picasso
                 .get()
                 .load(img)
                 .resize(500, 500)
-                .into(fragment_character_details_image)
+                .into(binding.fragmentCharacterDetailsImage)
 
-            fragment_character_details_name.text = name
-            fragment_character_details_nickname.text = nickname
-            fragment_character_details_occupation_text.text = occupation.joinToString()
-            fragment_character_details_status_text.text = status
-            fragment_character_details_season_appearance_text.text = appearance.joinToString()
+            binding.fragmentCharacterDetailsName.text = name
+            binding.fragmentCharacterDetailsNickname.text = nickname
+            binding.fragmentCharacterDetailsOccupation.text = occupation.joinToString()
+            binding.fragmentCharacterDetailsStatusText.text = status
+            binding.fragmentCharacterDetailsSeasonAppearanceText.text = appearance.joinToString()
         }
     }
 
     private fun showError() {
-        fragment_character_details_progressbar.visibility = View.GONE
-        fragment_character_details_container.visibility = View.VISIBLE
+        binding.fragmentCharacterDetailsProgressbar.visibility = View.GONE
+        binding.fragmentCharacterDetailsContainer.visibility = View.VISIBLE
 
         Toast.makeText(
             requireContext(),

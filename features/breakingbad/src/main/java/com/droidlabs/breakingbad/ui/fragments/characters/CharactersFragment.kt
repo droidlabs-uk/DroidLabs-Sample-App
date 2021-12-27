@@ -1,33 +1,36 @@
 package com.droidlabs.breakingbad.ui.fragments.characters
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.droidlabs.breakingbad.R
+import com.droidlabs.breakingbad.databinding.FragmentCharactersBinding
 import com.droidlabs.breakingbad.ui.adapter.BreakingBadActions
 import com.droidlabs.breakingbad.ui.adapter.DelegatingBreakingBadAdapter
 import com.droidlabs.breakingbad.ui.fragments.toItems
 import com.droidlabs.core.network.breakingbad.datamodel.BreakingBadCharacter
 import com.droidlabs.core.utils.GridSpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_characters.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CharactersFragment : Fragment() {
+class CharactersFragment : Fragment(R.layout.fragment_characters) {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
     private val viewModel: CharactersViewModel by viewModels(factoryProducer = { factory })
+
+    private lateinit var binding: FragmentCharactersBinding
 
     private val characterAdapter = DelegatingBreakingBadAdapter() { actions ->
         when (actions) {
@@ -40,28 +43,21 @@ class CharactersFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_characters, container, false)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentCharactersBinding.bind(view)
 
         initBreakingBadAdapter()
 
         viewModel.getBreakingBadCharacters()
 
-        viewModel.charactersLiveData.observe(
-            this as LifecycleOwner,
-            Observer {
-                setBreakingBadCharacters(it)
-            }
-        )
+        viewModel.charactersLiveData.observe(this as LifecycleOwner) {
+            setBreakingBadCharacters(it)
+        }
     }
 
     private fun initBreakingBadAdapter() {
-        fragment_character_recyclerview.apply {
+        binding.fragmentCharacterRecyclerview.apply {
             adapter = characterAdapter
             layoutManager = GridLayoutManager(activity, 2)
             addItemDecoration(
@@ -88,16 +84,16 @@ class CharactersFragment : Fragment() {
     }
 
     private fun setLoading() {
-        fragment_character_progressbar.visibility = View.VISIBLE
+        binding.fragmentCharacterProgressbar.visibility = View.VISIBLE
     }
 
     private fun setCharacters(breakingBadCharacters: List<BreakingBadCharacter>) {
-        fragment_character_progressbar.visibility = View.GONE
+        binding.fragmentCharacterProgressbar.visibility = View.GONE
         characterAdapter.items = breakingBadCharacters.toItems()
     }
 
     private fun setError() {
-        fragment_character_progressbar.visibility = View.GONE
+        binding.fragmentCharacterProgressbar.visibility = View.GONE
 
         Toast.makeText(
             requireContext(),
