@@ -7,14 +7,16 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Configs.compileSdkVersion
+
     defaultConfig {
-        applicationId = "com.droidlabs"
-        minSdk = 21
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1.0.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = Configs.applicationId
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
+        versionCode = Configs.versionCode
+        versionName = Configs.versionName
+
+        testInstrumentationRunner = Configs.testInstrumentationRunner
     }
 
     buildTypes {
@@ -53,6 +55,6 @@ dependencies {
     implementation(project(":features:main"))
     implementation(project(":features:breakingbad"))
 
-    implementation(Deps.hilt)
-    implementation(Deps.hiltCompiler)
+    implementation(Deps.Hilt.hilt)
+    kapt(Deps.Hilt.hiltCompiler)
 }
