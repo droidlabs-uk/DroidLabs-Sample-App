@@ -37,38 +37,5 @@ class TransactionsActivity : AppCompatActivity() {
         setContent {
             TransactionActivityView()
         }
-
-//        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-//        bottomNav.setOnNavigationItemSelectedListener(navListener)
-//
-//        //TODO: better init for Fragments¬
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(
-//                R.id.transactions_fragment_container,
-//                transactionsFragmentRx
-//            ).commit()
-
     }
-
-//    private val navListener: BottomNavigationView.OnNavigationItemSelectedListener =
-//        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-//            var selectedFragment: Fragment? = null
-//
-//            when (item.itemId) {
-//                R.id.rx_fragment -> selectedFragment = transactionsFragmentRx
-//                R.id.coroutine_fragment -> selectedFragment = transactionsFragmentCoroutine
-//            }
-//
-//            selectedFragment?.let {
-//                supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(
-//                        R.id.transactions_fragment_container,
-//                        it
-//                    ).commit()
-//            }
-//
-//            true
-//        }
 }

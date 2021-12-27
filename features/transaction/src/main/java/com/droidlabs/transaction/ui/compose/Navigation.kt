@@ -90,6 +90,7 @@ fun RxScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Rx Screen")
+
         }
     }
 }
@@ -113,6 +114,9 @@ fun CoroutineScreen(
 @Composable
 private fun TransactionsFragmentCoroutineView() {
     val viewModel = hiltViewModel<TransactionViewModel>()
+
+    viewModel.fetchMultiAddress("xpub6CfLQa8fLgtouvLxrb8EtvjbXfoC1yqzH6YbTJw4dP7srt523AhcMV8Uh4K3TWSHz9oDWmn9MuJogzdGU3ncxkBsAC9wFBLmFrWT9Ek81kQ")
+
     val transactions by viewModel.multiAddressLiveData.observeAsState()
 
     transactions?.txs?.let {
@@ -122,7 +126,6 @@ private fun TransactionsFragmentCoroutineView() {
         }
     }
 }
-
 
 sealed class TransactionScreens(val route: String, val label: String, val icon: ImageVector) {
     object RxScreen : TransactionScreens("rx", "Rx", Icons.Outlined.Home)
