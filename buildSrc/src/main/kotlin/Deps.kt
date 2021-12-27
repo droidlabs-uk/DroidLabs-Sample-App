@@ -59,6 +59,7 @@ object Deps {
     object Hilt {
         const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+        const val hiltNav ="androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
     }
 
     object Compose {
@@ -72,6 +73,11 @@ object Deps {
         const val viewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
         const val livedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
         const val rxjava = "androidx.compose.runtime:runtime-rxjava2:${Versions.compose}"
+        const val composeCompiler = "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
+    }
+
+    object Timber {
+        const val timber = "com.jakewharton.timber:timber:5.0.1"
     }
 
     object UiTests {

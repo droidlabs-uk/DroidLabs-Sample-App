@@ -103,6 +103,7 @@ fun CoroutineScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            Text(text = "Coroutine Screen")
             TransactionsFragmentCoroutineView()
         }
     }

@@ -40,7 +40,7 @@ class LiveDataValueCapture<T> {
 
     fun addValue(value: T?) {
         _values += value
-        channel.trySend(value).isSuccess
+        channel.offer(value)
     }
 
     suspend fun assertSendsValues(vararg expected: T?, timeout: Long = 0) {
