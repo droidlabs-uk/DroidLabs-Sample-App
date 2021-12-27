@@ -30,7 +30,7 @@ object Deps {
 
     object Architecture {
         const val lifecycleExt = "android.arch.lifecycle:extensions:1.1.1"
-        const val liveCycleJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.1"
+        const val lifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.1"
     }
 
     object RxAndroid {

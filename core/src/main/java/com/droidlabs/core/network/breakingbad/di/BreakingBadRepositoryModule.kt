@@ -1,6 +1,5 @@
 package com.droidlabs.core.network.breakingbad.di
 
-import com.droidlabs.core.network.breakingbad.BreakingBadAPI
 import com.droidlabs.core.network.breakingbad.BreakingBadApiFactory
 import com.droidlabs.core.network.breakingbad.BreakingBadRepository
 import com.droidlabs.core.network.breakingbad.BreakingBadRepositoryImpl
