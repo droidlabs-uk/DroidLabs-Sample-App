@@ -10,9 +10,13 @@ import io.reactivex.processors.ReplayProcessor
 import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
-class TransactionPresenter @Inject constructor(processor: ITransactionProcessor, scheduler: Scheduler): ITransactionPresenter {
+class TransactionPresenter @Inject constructor(
+    processor: ITransactionProcessor,
+    scheduler: Scheduler
+) : ITransactionPresenter {
 
-    private val _state: ReplayProcessor<TransactionViewState> = ReplayProcessor.create<TransactionViewState>()
+    private val _state: ReplayProcessor<TransactionViewState> =
+        ReplayProcessor.create<TransactionViewState>()
     override val state: Flowable<TransactionViewState>
         get() = _state
 
@@ -35,7 +39,8 @@ class TransactionPresenter @Inject constructor(processor: ITransactionProcessor,
         return FlowableTransformer { stream ->
             stream.publish { intent ->
                 Flowable.merge(
-                    intent.ofType<InitialIntent>().distinctUntilChanged { prev, curr -> prev == curr },
+                    intent.ofType<InitialIntent>()
+                        .distinctUntilChanged { prev, curr -> prev == curr },
                     intent.filter { it !is InitialIntent }
                 )
             }
@@ -61,12 +66,15 @@ class TransactionPresenter @Inject constructor(processor: ITransactionProcessor,
         return actionList
     }
 
-    private fun reducer(viewState: TransactionViewState, event: TransactionsListPartialState): TransactionViewState =
+    private fun reducer(
+        viewState: TransactionViewState,
+        event: TransactionsListPartialState
+    ): TransactionViewState =
         when (event) {
             is TransactionsListInitialState -> viewState.copy(transactions = event.transactions)
 
-            is TransactionsList -> event.listOfPartialStates.fold(viewState){ state, transactionsListPartialState ->
-                when(transactionsListPartialState){
+            is TransactionsList -> event.listOfPartialStates.fold(viewState) { state, transactionsListPartialState ->
+                when (transactionsListPartialState) {
                     is TransactionsListSuccessState -> state.copy(
                         transactionsLoading = false,
                         transactions = transactionsListPartialState.transactions

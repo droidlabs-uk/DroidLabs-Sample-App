@@ -11,7 +11,10 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsInteractor, scheduler: Scheduler) :
+class DefaultTransactionProcessor @Inject constructor(
+    interactor: ITransactionsInteractor,
+    scheduler: Scheduler
+) :
     ITransactionProcessor {
 
     private val transactionProcessor =
@@ -20,7 +23,7 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
                 interactor
                     .getTransactions(action.address)
                     .observeOn(scheduler)
-                    .distinctUntilChanged{prev, curr ->
+                    .distinctUntilChanged { prev, curr ->
                         Arrays.deepEquals(
                             prev.toTypedArray(),
                             curr.toTypedArray()
@@ -57,7 +60,8 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
                 published.map { it.list.map(this::listActionTransformer) }
                     .switchMap { events ->
                         Flowable.combineLatest(events) { eventItem ->
-                            TransactionsList(eventItem.map { it as TransactionsListState }) }
+                            TransactionsList(eventItem.map { it as TransactionsListState })
+                        }
                             .map { if (it.listOfPartialStates.any(this::isLoadingAction)) TransactionsListLoading else it }
                     }
             }

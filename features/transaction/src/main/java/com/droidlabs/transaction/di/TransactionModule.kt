@@ -20,10 +20,10 @@ import io.reactivex.schedulers.Schedulers
 @Module
 class TransactionModule {
 
-    @Provides
-    fun provideTransactionsFragmentRx(
-            transactionsFragmentRx: TransactionsFragmentRx
-    ): TransactionsFragmentRx = transactionsFragmentRx
+//    @Provides
+//    fun provideTransactionsFragmentRx(
+//            transactionsFragmentRx: TransactionsFragmentRx
+//    ): TransactionsFragmentRx = transactionsFragmentRx
 
     @Provides
     fun provideTransactionsFragmentCoroutine(
@@ -37,12 +37,12 @@ class TransactionModule {
     ): ITransactionPresenter =
             TransactionPresenter(transactionProcessor, scheduler)
 
-    @Provides
-    fun provideTransactionsProcessor(
-            interactor: ITransactionsInteractor,
-            scheduler: Scheduler
-    ): ITransactionProcessor =
-            DefaultTransactionProcessor(interactor, scheduler)
+//    @Provides
+//    fun provideTransactionsProcessor(
+//            interactor: ITransactionsInteractor,
+//            scheduler: Scheduler
+//    ): ITransactionProcessor =
+//            DefaultTransactionProcessor(interactor, scheduler)
 
     @Provides
     fun provideTransactionsInteractor(): ITransactionsInteractor =
