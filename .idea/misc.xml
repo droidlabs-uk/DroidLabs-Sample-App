@@ -6,6 +6,7 @@
         <entry key="features/cuvva/src/main/res/layout/fragment_cuvva.xml" value="0.36041666666666666" />
         <entry key="features/cuvva/src/main/res/layout/fragment_home.xml" value="0.18958333333333333" />
         <entry key="features/cuvva/src/main/res/layout/itemview_home.xml" value="0.1" />
+        <entry key="features/main/src/main/res/layout/home_fragment.xml" value="0.18958333333333333" />
         <entry key="features/transaction/src/main/res/drawable/ic_incoming_24px.xml" value="0.1" />
         <entry key="features/transaction/src/main/res/layout/fragment_transactions.xml" value="0.1" />
         <entry key="features/transaction/src/main/res/layout/itemview_transaction.xml" value="0.1" />
