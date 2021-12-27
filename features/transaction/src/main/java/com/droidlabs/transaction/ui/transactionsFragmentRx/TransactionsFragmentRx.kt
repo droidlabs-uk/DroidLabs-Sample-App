@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rxjava2.subscribeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.droidlabs.transaction.ui.compose.CentredCircularProgressIndicator
+import com.droidlabs.transaction.ui.compose.ErrorScreen
+import com.droidlabs.transaction.ui.compose.LoadingScreen
 import com.droidlabs.transaction.ui.compose.TransactionComposeList
 import com.droidlabs.transaction.ui.compose.toViewState
 import com.droidlabs.transaction.ui.transactionsFragmentRx.events.InitialIntent
@@ -52,9 +52,6 @@ class TransactionsFragmentRx : Fragment() {
     private fun viewIntent(address: String): Flowable<TransactionIntent> =
         Flowable.just(InitialIntent(address))
 
-    private fun streamError(error: Throwable) =
-        Toast.makeText(context, "TransactionsFragmentRx: $error", Toast.LENGTH_LONG).show()
-
     override fun onStop() {
         disposableBag.clear()
 
@@ -65,10 +62,10 @@ class TransactionsFragmentRx : Fragment() {
     private fun TransactionsFragmentRxView() {
         val viewState = presenter.state.subscribeAsState(initial = TransactionViewState()).value
 
-        if (viewState.transactionsError.isError) streamError(viewState.transactionsError)
+        if (viewState.transactionsError.isError) ErrorScreen(errorMessage = viewState.transactionsError.message)
 
         when {
-            viewState.isLoading() -> CentredCircularProgressIndicator()
+            viewState.isLoading() -> LoadingScreen()
             else -> TransactionComposeList(itemViewStates = viewState.transactions.toViewState())
         }
     }

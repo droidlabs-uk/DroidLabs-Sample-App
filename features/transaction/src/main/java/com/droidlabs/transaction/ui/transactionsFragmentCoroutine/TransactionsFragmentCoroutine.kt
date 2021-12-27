@@ -9,14 +9,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.droidlabs.transaction.ui.compose.TransactionComposeList
 import com.droidlabs.transaction.ui.compose.toViewState
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class TransactionsFragmentCoroutine : Fragment() {
 
-    private lateinit var transactionViewModel: TransactionViewModel
+    private val transactionViewModel: TransactionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +35,6 @@ class TransactionsFragmentCoroutine : Fragment() {
 
         val address =
             "xpub6CfLQa8fLgtouvLxrb8EtvjbXfoC1yqzH6YbTJw4dP7srt523AhcMV8Uh4K3TWSHz9oDWmn9MuJogzdGU3ncxkBsAC9wFBLmFrWT9Ek81kQ"
-
-        transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel::class.java)
 
         transactionViewModel.fetchMultiAddress(address)
     }

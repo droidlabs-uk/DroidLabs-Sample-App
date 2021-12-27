@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidlabs.core.network.transaction.api.datamodel.Txs
 import com.droidlabs.transaction.R
@@ -45,14 +43,14 @@ fun TransactionSimpleListItem(itemViewState: TransactionItemViewState) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(Dp(50f)),
-        border = BorderStroke(Dp(1f), Color.Gray),
-        elevation = Dp(0f)
+            .height(50.dp),
+        border = BorderStroke(1.dp, Color.Gray),
+        elevation = 0.dp
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = Dp(8f), end = Dp(8f)),
+                .padding(start = 8.dp, end = 8.dp),
         ) {
             Text(
                 text = prettyDateString(itemViewState.time.toLong()),
@@ -71,8 +69,8 @@ fun TransactionSimpleListItem(itemViewState: TransactionItemViewState) {
                 contentDescription = "",
                 alignment = Alignment.CenterEnd,
                 modifier = Modifier
-                    .height(Dp(40f))
-                    .width(Dp(40f))
+                    .height(40.dp)
+                    .width(40.dp)
             )
         }
     }
@@ -84,19 +82,6 @@ fun setTransactionDirection(outgoingTransaction: Boolean): Painter =
         true -> painterResource(id = R.drawable.ic_outgoing_24px)
         else -> painterResource(id = R.drawable.ic_incoming_24px)
     }
-
-@Composable
-fun CentredCircularProgressIndicator() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        CircularProgressIndicator(modifier = Modifier.size(50.dp))
-    }
-}
 
 fun List<Txs>.toViewState() =
     map {
