@@ -83,6 +83,6 @@ object Deps {
 //    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.5'
     }
 
-    // TODO: To be removed soon
-    const val de = "com.mikhaellopez:circularprogressbar:2.0.0"
+    //TODO: To be removed soon
+    const val circularProgressbar = "com.mikhaellopez:circularprogressbar:2.0.0"
 }
