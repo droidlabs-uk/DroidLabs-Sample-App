@@ -16,7 +16,7 @@ class TransactionsAdapter: RecyclerView.Adapter<TransactionsViewholder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TransactionsViewholder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.itemview_home,
+                R.layout.itemview_cuvva,
                 parent,
                 false
             )
@@ -31,11 +31,11 @@ class TransactionsAdapter: RecyclerView.Adapter<TransactionsViewholder>() {
         holder.brand.text = vehiclePolicy.make
 
         holder.type.text = vehiclePolicy.type
-        holder.reg_plate.text = setRegPlate(vehiclePolicy.pretty_reg_plate)
-        holder.policy_action.text = vehiclePolicy.policyAction
-        holder.total_policies.text = setTotalPolicies(vehiclePolicy.total_policies)
-        holder.policy_time_remaining_percent.progress = vehiclePolicy.remaining_time_percent.toFloat()
-        holder.policy_time_remaining_text.text = vehiclePolicy.remaining_time
+        holder.regPlate.text = setRegPlate(vehiclePolicy.pretty_reg_plate)
+        holder.policyAction.text = vehiclePolicy.policyAction
+        holder.totalPolicies.text = setTotalPolicies(vehiclePolicy.total_policies)
+        holder.policyTimeRemainingPercent.progress = vehiclePolicy.remaining_time_percent.toFloat()
+        holder.policyTimeRemainingText.text = vehiclePolicy.remaining_time
     }
 
     private fun setTotalPolicies(policies: Int) = "Total policies\n$policies"
