@@ -7,29 +7,32 @@ Twitter: @DroidLabs
 This is a demonstration project from DroidLabs to show off tech
 solutions and engineering skill to potential clients. Additionally, it
 serves as a working reference guide incorporating solutions for common
-issus such as:
-- inter-module navigation
-- Hilt instead of Dagger2
-- Coroutine Testing
-- MVI
+issues such as:
+
 - Clean Architecture
+- MVI
+- Hilt instead of Dagger2
+- Jetpack Compose UI  
+- inter-module navigation
+- Coroutine Testing
 
 ##### Demonstrated:
 
 - modularised application
 - Hilt dependency injection
-- Retrofit
+- Retrofit + Moshi
 - RxAndroid / RxJava
-- MVI - architecture
+- MVI architecture
 - Coroutines
 - JUnit4 Testing
-- proper Gradle dependency setup
 - simple UI via RecyclerView
+- Jetpack Compose UI  
+- BottomNavigationBar / Tabbed Layout
+- build.gradle with Kotlin DSL
 
 ##### Upcoming:
 
 - navigation interface between fragments
-- BottomNavigationBar / Tabbed Layout
 - Animation filling the list top to bottom
 - detailed view of each transaction
 - better abstracted network layer
