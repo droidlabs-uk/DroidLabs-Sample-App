@@ -1,4 +1,4 @@
-package com.droidlabs.transaction.ui.compose
+package com.droidlabs.core.compose
 
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.layout.Arrangement

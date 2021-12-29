@@ -44,7 +44,7 @@ dependencies {
     implementation(project(":core"))
 
     implementation(Deps.Hilt.hilt)
-    implementation(Deps.Hilt.hiltNav)
+    implementation(Deps.Hilt.hiltNavCompose)
     kapt(Deps.Hilt.hiltCompiler)
 
     implementation(Deps.Common.appCompat)

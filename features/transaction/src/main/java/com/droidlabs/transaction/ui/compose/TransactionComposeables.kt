@@ -8,14 +8,18 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.droidlabs.core.network.transaction.api.datamodel.Txs
 import com.droidlabs.transaction.R
+import com.droidlabs.transaction.ui.transactionsFragmentCoroutine.TransactionViewModel
 import com.droidlabs.transaction.utils.convertSatoshiToBTC
 import com.droidlabs.transaction.utils.isNegative
 import com.droidlabs.transaction.utils.prettyDateString
@@ -91,3 +95,20 @@ fun List<Txs>.toViewState() =
             amount = it.result
         )
     }
+
+
+@Composable
+fun TransactionsFragmentCoroutineView() {
+    val viewModel = hiltViewModel<TransactionViewModel>()
+
+    viewModel.fetchMultiAddress("xpub6CfLQa8fLgtouvLxrb8EtvjbXfoC1yqzH6YbTJw4dP7srt523AhcMV8Uh4K3TWSHz9oDWmn9MuJogzdGU3ncxkBsAC9wFBLmFrWT9Ek81kQ")
+
+    val transactions by viewModel.multiAddressLiveData.observeAsState()
+
+    transactions?.txs?.let {
+        when {
+            it.isEmpty() -> TransactionComposeList(itemViewStates = listOf(TransactionItemViewState("Empty", 0 , 0)))
+            else -> TransactionComposeList(itemViewStates = it.toViewState())
+        }
+    }
+}

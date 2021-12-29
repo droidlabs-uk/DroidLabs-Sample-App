@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rxjava2.subscribeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.droidlabs.transaction.ui.compose.ErrorScreen
-import com.droidlabs.transaction.ui.compose.LoadingScreen
+import com.droidlabs.core.compose.ErrorScreen
+import com.droidlabs.core.compose.LoadingScreen
 import com.droidlabs.transaction.ui.compose.TransactionComposeList
 import com.droidlabs.transaction.ui.compose.toViewState
 import com.droidlabs.transaction.ui.transactionsFragmentRx.events.InitialIntent

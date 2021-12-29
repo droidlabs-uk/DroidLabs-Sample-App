@@ -3,4 +3,5 @@
     <string name="title_network">network</string>
     <string name="title_core">Module Title</string>
     <string name="title_transaction">Module Title</string>
+    <string name="genericErrorMessage">Something went kaput :(</string>
 </resources>

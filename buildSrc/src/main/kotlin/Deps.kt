@@ -59,7 +59,7 @@ object Deps {
     object Hilt {
         const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-        const val hiltNav ="androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
+        const val hiltNavCompose ="androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
     }
 
     object Compose {

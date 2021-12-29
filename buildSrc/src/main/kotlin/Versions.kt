@@ -4,7 +4,7 @@ object Versions {
     const val kotlinVersion = "1.6.10"
     const val buildGradleVersion = "7.0.4"
 
-    const val safeArgsVersion = "2.3.5"
+    const val safeArgsVersion = "2.4.0-alpha02"
     const val hilt = "2.40.5"
     const val retrofit = "2.4.0"
     const val okhttp = "3.12.0"
