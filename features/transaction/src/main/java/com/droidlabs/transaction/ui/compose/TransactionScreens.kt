@@ -12,6 +12,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import com.droidlabs.core.compose.ScaffoldScreen
 import com.droidlabs.core.compose.Screen
+import com.droidlabs.transaction.ui.transactionsCoroutine.TransactionsCoroutineView
+import org.w3c.dom.Text
 
 sealed class TransactionScreens(
     override val route: String,
@@ -46,7 +48,7 @@ fun CoroutineScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Coroutine Screen")
-            TransactionsFragmentCoroutineView()
+            TransactionsCoroutineView()
         }
     }
 }

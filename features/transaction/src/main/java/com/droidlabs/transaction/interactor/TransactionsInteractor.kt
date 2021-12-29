@@ -1,7 +1,7 @@
 package com.droidlabs.transaction.interactor
 
-import com.droidlabs.core.network.transaction.api.BlockchainAPI
-import com.droidlabs.core.network.transaction.api.datamodel.Txs
+import com.droidlabs.core.network.transaction.data.api.BlockchainAPI
+import com.droidlabs.core.network.transaction.domain.model.Txs
 import io.reactivex.Flowable
 
 class TransactionsInteractor(private val blockchainAPI: BlockchainAPI): ITransactionsInteractor {

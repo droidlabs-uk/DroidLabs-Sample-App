@@ -1,6 +1,6 @@
 package com.droidlabs.transaction.ui.transactionsFragmentRx.events
 
-import com.droidlabs.core.network.transaction.api.datamodel.Txs
+import com.droidlabs.core.network.transaction.domain.model.Txs
 
 data class TransactionViewState (
     val transactions: List<Txs> = listOf(),

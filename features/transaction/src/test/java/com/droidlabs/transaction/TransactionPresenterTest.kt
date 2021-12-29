@@ -1,6 +1,6 @@
 package com.droidlabs.transaction
 
-import com.droidlabs.core.network.transaction.api.datamodel.Txs
+import com.droidlabs.core.network.transaction.domain.model.Txs
 import com.droidlabs.transaction.interactor.TransactionsInteractor
 import com.droidlabs.transaction.ui.transactionsFragmentRx.events.ErrorViewState
 import com.droidlabs.transaction.ui.transactionsFragmentRx.events.TransactionViewState

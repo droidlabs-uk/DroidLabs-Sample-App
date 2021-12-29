@@ -66,4 +66,6 @@ dependencies {
     implementation(Deps.Compose.composeCompiler)
 
     implementation(Deps.Test.truth)
+
+    implementation(Deps.Timber.timber)
 }
