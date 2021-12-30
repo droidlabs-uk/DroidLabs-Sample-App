@@ -18,6 +18,7 @@ issues such as:
 
 ##### Demonstrated:
 
+Application
 - modularised application
 - Hilt dependency injection
 - Retrofit + Moshi
@@ -30,9 +31,11 @@ issues such as:
 - BottomNavigationBar / Tabbed Layout
 - build.gradle with Kotlin DSL
 
+CI/CD via Github Actions 
+- Android detekt
+
 ##### Upcoming:
 
-- navigation interface between fragments
 - Animation filling the list top to bottom
 - detailed view of each transaction
 - better abstracted network layer
