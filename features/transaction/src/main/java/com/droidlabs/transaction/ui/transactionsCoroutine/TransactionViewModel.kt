@@ -7,6 +7,7 @@ import com.droidlabs.core.di.IoDispatcher
 import com.droidlabs.core.network.Result
 import com.droidlabs.core.network.transaction.domain.model.Txs
 import com.droidlabs.core.network.transaction.domain.usecases.BlockchainGetTxsUseCase
+import com.droidlabs.transaction.utils.address
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
@@ -17,10 +18,6 @@ class TransactionViewModel @Inject constructor(
     private val blockchainGetTxsUseCase: BlockchainGetTxsUseCase,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
-
-    // TODO: hardcoded for simplification
-    private val address =
-        "xpub6CfLQa8fLgtouvLxrb8EtvjbXfoC1yqzH6YbTJw4dP7srt523AhcMV8Uh4K3TWSHz9oDWmn9MuJogzdGU3ncxkBsAC9wFBLmFrWT9Ek81kQ"
 
     private val refreshState = mutableStateOf(false)
 

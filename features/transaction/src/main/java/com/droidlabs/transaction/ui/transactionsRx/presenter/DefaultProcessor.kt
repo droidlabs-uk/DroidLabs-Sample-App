@@ -1,7 +1,7 @@
-package com.droidlabs.transaction.ui.transactionsFragmentRx.presenter
+package com.droidlabs.transaction.ui.transactionsRx.presenter
 
 import com.droidlabs.transaction.interactor.ITransactionsInteractor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.events.*
+import com.droidlabs.transaction.ui.transactionsRx.events.*
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
 import io.reactivex.Scheduler

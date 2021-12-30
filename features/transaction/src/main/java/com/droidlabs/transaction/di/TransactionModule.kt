@@ -3,11 +3,10 @@ package com.droidlabs.transaction.di
 import com.droidlabs.core.network.transaction.data.api.BlockchainApiFactory
 import com.droidlabs.transaction.interactor.ITransactionsInteractor
 import com.droidlabs.transaction.interactor.TransactionsInteractor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.TransactionsFragmentRx
-import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.DefaultTransactionProcessor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.ITransactionPresenter
-import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.ITransactionProcessor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
+import com.droidlabs.transaction.ui.transactionsRx.presenter.DefaultTransactionProcessor
+import com.droidlabs.transaction.ui.transactionsRx.presenter.ITransactionPresenter
+import com.droidlabs.transaction.ui.transactionsRx.presenter.ITransactionProcessor
+import com.droidlabs.transaction.ui.transactionsRx.presenter.TransactionPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +17,6 @@ import io.reactivex.schedulers.Schedulers
 @InstallIn(SingletonComponent::class)
 @Module
 class TransactionModule {
-
-    @Provides
-    fun provideTransactionsFragmentRx(
-            transactionsFragmentRx: TransactionsFragmentRx
-    ): TransactionsFragmentRx = transactionsFragmentRx
 
     @Provides
     fun transactionPresenter(

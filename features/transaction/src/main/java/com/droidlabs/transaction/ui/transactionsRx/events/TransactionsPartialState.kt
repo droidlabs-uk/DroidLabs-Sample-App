@@ -1,4 +1,4 @@
-package com.droidlabs.transaction.ui.transactionsFragmentRx.events
+package com.droidlabs.transaction.ui.transactionsRx.events
 
 import com.droidlabs.core.network.transaction.domain.model.Txs
 

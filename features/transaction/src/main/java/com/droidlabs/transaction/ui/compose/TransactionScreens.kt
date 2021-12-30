@@ -13,6 +13,7 @@ import androidx.navigation.NavHostController
 import com.droidlabs.core.compose.ScaffoldScreen
 import com.droidlabs.core.compose.Screen
 import com.droidlabs.transaction.ui.transactionsCoroutine.TransactionsCoroutineView
+import com.droidlabs.transaction.ui.transactionsRx.TransactionsRxView
 import org.w3c.dom.Text
 
 sealed class TransactionScreens(
@@ -32,7 +33,7 @@ fun RxScreen(navController: NavHostController, bottomNavigationItems: List<Scree
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Rx Screen")
-
+            TransactionsRxView()
         }
     }
 }
