@@ -74,6 +74,8 @@ object Deps {
         const val livedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
         const val rxjava = "androidx.compose.runtime:runtime-rxjava2:${Versions.compose}"
         const val composeCompiler = "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
+        const val accompanistSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanist}"
+        const val accompanistInsetsUi = "com.google.accompanist:accompanist-insets-ui:${Versions.accompanist}"
     }
 
     object Timber {

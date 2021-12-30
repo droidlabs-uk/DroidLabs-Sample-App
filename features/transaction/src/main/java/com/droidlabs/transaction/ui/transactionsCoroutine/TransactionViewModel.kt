@@ -1,5 +1,6 @@
 package com.droidlabs.transaction.ui.transactionsCoroutine
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,9 @@ import com.droidlabs.core.network.transaction.domain.usecases.BlockchainGetTxsUs
 import com.droidlabs.transaction.utils.address
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,4 +32,16 @@ class TransactionViewModel @Inject constructor(
             SharingStarted.Eagerly,
             Result.Loading
         )
+
+    fun getRefreshState(): State<Boolean> = refreshState
+
+    fun refresh() {
+        refreshState.value = true
+
+        viewModelScope.launch {
+            delay(2000) //fake refresh for now
+        }
+
+        refreshState.value = false
+    }
 }

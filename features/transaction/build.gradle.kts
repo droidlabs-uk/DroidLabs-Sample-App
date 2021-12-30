@@ -67,6 +67,8 @@ dependencies {
     implementation(Deps.Compose.materialIcons)
     implementation(Deps.Compose.materialIconsExt)
     implementation(Deps.Compose.composeCompiler)
+    implementation(Deps.Compose.accompanistInsetsUi)
+    implementation(Deps.Compose.accompanistSwipeRefresh)
 
     implementation(Deps.Retrofit.retrofit)
 

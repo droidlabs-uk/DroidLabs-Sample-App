@@ -7,9 +7,12 @@ import com.droidlabs.core.network.transaction.data.api.BlockchainRepository
 import com.droidlabs.core.network.transaction.domain.mapper.BlockchainMapper
 import com.droidlabs.core.network.transaction.domain.model.Txs
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 class BlockchainGetTxsUseCase @Inject constructor(
     private val blockchainRepository: BlockchainRepository,
