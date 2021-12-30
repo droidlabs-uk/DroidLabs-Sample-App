@@ -8,8 +8,7 @@ import com.droidlabs.core.network.Result
 import com.droidlabs.core.network.transaction.domain.model.Txs
 import com.droidlabs.core.network.transaction.domain.usecases.BlockchainGetTxsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -25,12 +24,12 @@ class TransactionViewModel @Inject constructor(
 
     private val refreshState = mutableStateOf(false)
 
-    //TODO: does not trigger init() and get past Loading
-    val getTransactionsFlow: StateFlow<Result<List<Txs>>> = flow<Result<List<Txs>>> {
-        blockchainGetTxsUseCase.fetchTxs(address)
-    }.flowOn(ioDispatcher).stateIn(
-        viewModelScope,
-        SharingStarted.Eagerly,
-        Result.Loading
-    )
+    val getTransactionsFlow: StateFlow<Result<List<Txs>>> =
+        flow<Result<List<Txs>>> {
+            blockchainGetTxsUseCase.fetchTxs(address).collect { emit(it) }
+        }.flowOn(ioDispatcher).stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            Result.Loading
+        )
 }
