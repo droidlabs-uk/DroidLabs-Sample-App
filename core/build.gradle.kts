@@ -2,6 +2,7 @@ plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinKapt)
+    id(Plugins.androidHilt)
 }
 
 android {
@@ -10,6 +11,14 @@ android {
     defaultConfig {
         minSdk = Configs.minSdkVersion
         targetSdk = Configs.targetSdkVersion
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     compileOptions {
@@ -36,6 +45,7 @@ dependencies {
     implementation(Deps.Common.material)
 
     implementation(Deps.Hilt.hilt)
+    implementation(Deps.Hilt.hiltNavCompose)
     kapt(Deps.Hilt.hiltCompiler)
 
     implementation(Deps.Retrofit.retrofit)
@@ -46,5 +56,16 @@ dependencies {
     implementation(Deps.OkHttp.okhttp)
     implementation(Deps.OkHttp.loggingInterceptor)
 
+    implementation(Deps.Compose.ui)
+    implementation(Deps.Compose.uiTooling)
+    implementation(Deps.Compose.foundation)
+    implementation(Deps.Compose.activityCompose)
+    implementation(Deps.Compose.material)
+    implementation(Deps.Compose.materialIcons)
+    implementation(Deps.Compose.materialIconsExt)
+    implementation(Deps.Compose.composeCompiler)
+
     implementation(Deps.Test.truth)
+
+    implementation(Deps.Timber.timber)
 }

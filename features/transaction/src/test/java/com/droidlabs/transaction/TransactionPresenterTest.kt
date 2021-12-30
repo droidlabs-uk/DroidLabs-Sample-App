@@ -1,11 +1,11 @@
 package com.droidlabs.transaction
 
-import com.droidlabs.core.network.transaction.api.datamodel.Txs
+import com.droidlabs.core.network.transaction.domain.model.Txs
 import com.droidlabs.transaction.interactor.TransactionsInteractor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.events.ErrorViewState
-import com.droidlabs.transaction.ui.transactionsFragmentRx.events.TransactionViewState
-import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.DefaultTransactionProcessor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.presenter.TransactionPresenter
+import com.droidlabs.transaction.ui.transactionsRx.events.ErrorViewState
+import com.droidlabs.transaction.ui.transactionsRx.events.TransactionViewState
+import com.droidlabs.transaction.ui.transactionsRx.presenter.DefaultTransactionProcessor
+import com.droidlabs.transaction.ui.transactionsRx.presenter.TransactionPresenter
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Flowable

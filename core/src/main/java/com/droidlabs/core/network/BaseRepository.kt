@@ -2,6 +2,7 @@ package com.droidlabs.core.network
 
 import android.util.Log
 import retrofit2.Response
+import timber.log.Timber
 import java.io.IOException
 
 open class BaseRepository{
@@ -12,7 +13,7 @@ open class BaseRepository{
 
         when (result) {
             is Result.Success -> data = result.data
-            is Result.Error -> Log.d("DataRepository", "$errorMessage & Exception - ${result.exception}")
+            is Result.Error -> Timber.d(errorMessage + " & Exception - " + result.exception)
         }
 
         return data

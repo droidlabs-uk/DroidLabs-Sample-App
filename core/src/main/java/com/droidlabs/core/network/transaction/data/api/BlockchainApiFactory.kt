@@ -1,4 +1,4 @@
-package com.droidlabs.core.network.transaction.api
+package com.droidlabs.core.network.transaction.data.api
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient

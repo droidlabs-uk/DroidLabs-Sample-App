@@ -1,6 +1,6 @@
-package com.droidlabs.transaction.ui.transactionsFragmentRx.events
+package com.droidlabs.transaction.ui.transactionsRx.events
 
-import com.droidlabs.core.network.transaction.api.datamodel.Txs
+import com.droidlabs.core.network.transaction.domain.model.Txs
 
 sealed class TransactionsListPartialState
 class TransactionsListInitialState(val transactions: List<Txs>): TransactionsListPartialState()

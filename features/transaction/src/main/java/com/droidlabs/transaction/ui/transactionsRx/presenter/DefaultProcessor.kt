@@ -1,7 +1,7 @@
-package com.droidlabs.transaction.ui.transactionsFragmentRx.presenter
+package com.droidlabs.transaction.ui.transactionsRx.presenter
 
 import com.droidlabs.transaction.interactor.ITransactionsInteractor
-import com.droidlabs.transaction.ui.transactionsFragmentRx.events.*
+import com.droidlabs.transaction.ui.transactionsRx.events.*
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
 import io.reactivex.Scheduler
@@ -11,7 +11,10 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsInteractor, scheduler: Scheduler) :
+class DefaultTransactionProcessor @Inject constructor(
+    interactor: ITransactionsInteractor,
+    scheduler: Scheduler
+) :
     ITransactionProcessor {
 
     private val transactionProcessor =
@@ -20,7 +23,7 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
                 interactor
                     .getTransactions(action.address)
                     .observeOn(scheduler)
-                    .distinctUntilChanged{prev, curr ->
+                    .distinctUntilChanged { prev, curr ->
                         Arrays.deepEquals(
                             prev.toTypedArray(),
                             curr.toTypedArray()
@@ -57,7 +60,8 @@ class DefaultTransactionProcessor @Inject constructor(interactor: ITransactionsI
                 published.map { it.list.map(this::listActionTransformer) }
                     .switchMap { events ->
                         Flowable.combineLatest(events) { eventItem ->
-                            TransactionsList(eventItem.map { it as TransactionsListState }) }
+                            TransactionsList(eventItem.map { it as TransactionsListState })
+                        }
                             .map { if (it.listOfPartialStates.any(this::isLoadingAction)) TransactionsListLoading else it }
                     }
             }
