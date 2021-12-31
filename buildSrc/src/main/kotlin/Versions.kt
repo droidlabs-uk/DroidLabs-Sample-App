@@ -13,4 +13,5 @@ object Versions {
     const val compose = "1.1.0-rc01"
     const val composeCompiler = "1.1.0-rc02"
     const val accompanist = "0.21.5-rc"
+    const val detektVersion = "1.19.0"
 }

@@ -4,6 +4,7 @@ plugins {
     kotlin(Plugins.kotlinKapt)
     id(Plugins.androidHilt)
     id(Plugins.safeArgs)
+    id(Plugins.detekt).version(Versions.detektVersion)
 }
 
 android {
@@ -45,6 +46,10 @@ android {
     packagingOptions {
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/LGPL2.1")
+    }
+
+    tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+        this.jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
