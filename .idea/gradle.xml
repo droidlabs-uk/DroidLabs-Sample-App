@@ -21,7 +21,6 @@
             <option value="$PROJECT_DIR$/features/transaction" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

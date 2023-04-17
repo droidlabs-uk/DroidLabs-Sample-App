@@ -8,6 +8,7 @@ plugins {
 }
 
 android {
+    namespace = "com.droidlabs.app"
     compileSdk = Configs.compileSdkVersion
 
     defaultConfig {
@@ -30,26 +31,35 @@ android {
         }
     }
 
+    sourceSets {
+        getByName("release") {
+            java.setSrcDirs(listOf("src/release/kotlin", "src/main/kotlin"))
+        }
+        getByName("debug") {
+            java.setSrcDirs(listOf("src/debug/kotlin", "src/main/kotlin"))
+        }
+    }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     kapt {
         correctErrorTypes = true
     }
 
-    packagingOptions {
+    packaging {
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/LGPL2.1")
     }
 
     tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-        this.jvmTarget = JavaVersion.VERSION_11.toString()
+        this.jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 

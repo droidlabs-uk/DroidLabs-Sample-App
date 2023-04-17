@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.droidlabs.core.utils;
+package com.droidlabs.core.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -40,7 +40,7 @@ class LiveDataValueCapture<T> {
 
     fun addValue(value: T?) {
         _values += value
-        channel.offer(value)
+        channel.trySend(value)
     }
 
     suspend fun assertSendsValues(vararg expected: T?, timeout: Long = 0) {
@@ -95,8 +95,8 @@ fun <T> LiveData<T>.getValueForTest(): T {
     val data = arrayOfNulls<Any>(1)
     val latch = CountDownLatch(1)
     val observer = object : Observer<T> {
-        override fun onChanged(o: T?) {
-            data[0] = o
+        override fun onChanged(value: T) {
+            data[0] = value
             latch.countDown()
             removeObserver(this)
         }

@@ -27,7 +27,6 @@ object Deps {
 
     object Architecture {
         const val lifecycleExt = "android.arch.lifecycle:extensions:1.1.1"
-        const val lifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.1"
     }
 
     object RxAndroid {
@@ -59,7 +58,7 @@ object Deps {
     object Hilt {
         const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-        const val hiltNavCompose ="androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
+        const val hiltNavCompose ="androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
     }
 
     object Compose {
