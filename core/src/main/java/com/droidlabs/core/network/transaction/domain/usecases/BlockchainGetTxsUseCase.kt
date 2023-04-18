@@ -7,12 +7,15 @@ import com.droidlabs.core.network.transaction.data.api.BlockchainRepository
 import com.droidlabs.core.network.transaction.domain.mapper.BlockchainMapper
 import com.droidlabs.core.network.transaction.domain.model.Txs
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 class BlockchainGetTxsUseCase @Inject constructor(
     private val blockchainRepository: BlockchainRepository,
@@ -23,8 +26,12 @@ class BlockchainGetTxsUseCase @Inject constructor(
     suspend fun fetchTxs(address: String): Flow<Result<List<Txs>>> =
         flow {
             emit(Result.Loading)
+// TODO
+//            emitAll(blockchainRepository.getMultiAddress(address).map {
+//                Success(blockchainMapper.mapToTxs(it))
+//            })
 
-            emitAll(blockchainRepository.getMultiAddress(address).map {
+            emitAll(blockchainRepository.getMultiAddressKtor(address).map {
                 Success(blockchainMapper.mapToTxs(it))
             })
         }.catch {

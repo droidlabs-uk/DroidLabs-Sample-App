@@ -6,4 +6,5 @@ object Plugins {
     const val androidApplication = "com.android.application"
     const val detekt = "io.gitlab.arturbosch.detekt"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
+    const val serialization = "plugin.serialization"
 }

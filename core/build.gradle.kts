@@ -3,6 +3,7 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinKapt)
     id(Plugins.androidHilt)
+    kotlin(Plugins.serialization).version(Versions.serialization)
 }
 
 android {
@@ -56,6 +57,13 @@ dependencies {
 
     implementation(Deps.OkHttp.okhttp)
     implementation(Deps.OkHttp.loggingInterceptor)
+
+    implementation(Deps.Ktor.core)
+    implementation(Deps.Ktor.android)
+    implementation(Deps.Ktor.negotiation)
+
+//    implementation(Deps.Ktor.serialization)
+    implementation(Deps.Ktor.json)
 
     implementation(Deps.Compose.ui)
     implementation(Deps.Compose.uiTooling)
