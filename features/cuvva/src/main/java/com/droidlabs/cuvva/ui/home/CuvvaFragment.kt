@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.droidlabs.cuvva.PolicyViewModel
 import com.droidlabs.cuvva.R
@@ -36,14 +36,12 @@ class CuvvaFragment : Fragment(R.layout.fragment_cuvva) {
 
         val policy = "5cb893314c0000ad1cd3d68f"
 
-        ViewModelProviders
-            .of(this)
-            .get(PolicyViewModel::class.java)
+        ViewModelProvider(this)[PolicyViewModel::class.java]
             .apply {
                 fetchPolicy(policy)
-                policyLiveData.observe(viewLifecycleOwner, Observer {
+                policyLiveData.observe(viewLifecycleOwner) {
                     transactionsAdapter.vehiclePolicies = PolicyTransformer().transform(it)
-                })
+                }
             }
     }
 

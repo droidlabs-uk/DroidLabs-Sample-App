@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -6,6 +5,10 @@
         <entry key="../../../../layout/compose-model-1640784945272.xml" value="0.17525337837837837" />
         <entry key="../../../../layout/compose-model-1640785505678.xml" value="0.3137668918918919" />
         <entry key="../../../../layout/compose-model-1640865772169.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1642363416269.xml" value="0.3137668918918919" />
+        <entry key="../../../../layout/compose-model-1642363453986.xml" value="0.3137668918918919" />
+        <entry key="../../../../layout/compose-model-1642363461595.xml" value="0.3137668918918919" />
+        <entry key="../../../../layout/compose-model-1652102718185.xml" value="0.3137668918918919" />
         <entry key="features/cuvva/src/main/res/layout/fragment_cuvva.xml" value="0.36041666666666666" />
         <entry key="features/cuvva/src/main/res/layout/fragment_home.xml" value="0.18958333333333333" />
         <entry key="features/cuvva/src/main/res/layout/itemview_home.xml" value="0.1" />
@@ -16,7 +19,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
 </project>
