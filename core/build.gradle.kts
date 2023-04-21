@@ -61,8 +61,6 @@ dependencies {
     implementation(Deps.Ktor.core)
     implementation(Deps.Ktor.android)
     implementation(Deps.Ktor.negotiation)
-
-//    implementation(Deps.Ktor.serialization)
     implementation(Deps.Ktor.json)
 
     implementation(Deps.Compose.ui)

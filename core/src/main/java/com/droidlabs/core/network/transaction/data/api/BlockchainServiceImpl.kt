@@ -9,6 +9,7 @@ object BlockchainServiceImpl : BlockchainService {
     private val httpClient by lazy { KtorClient.getInstance }
 
     override suspend fun getMultiAddress(active: String): BlockchainMultiAddress =
-        httpClient.get("$blockchainBaseUrl/multiaddr").body()
-//            parseQueryString(active) // TODO
+        httpClient.get("$blockchainBaseUrl/multiaddr") {
+            url { parameters.append("active", active) }
+        }.body()
 }

@@ -4,8 +4,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class BlockchainMultiAddress(
-    @SerialName("address")
+data class BlockchainMultiAddress(
+    @SerialName("addresses")
     val addresses: List<Address>,
 
     @SerialName("wallet")
@@ -54,5 +54,5 @@ data class Txs(
 @Serializable
 data class Info(
     @SerialName("conversion")
-    val conversion: Int
+    val conversion: String
 )

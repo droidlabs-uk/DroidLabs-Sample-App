@@ -26,16 +26,12 @@ class BlockchainGetTxsUseCase @Inject constructor(
     suspend fun fetchTxs(address: String): Flow<Result<List<Txs>>> =
         flow {
             emit(Result.Loading)
-// TODO
-//            emitAll(blockchainRepository.getMultiAddress(address).map {
-//                Success(blockchainMapper.mapToTxs(it))
-//            })
 
             emitAll(blockchainRepository.getMultiAddressKtor(address).map {
                 Success(blockchainMapper.mapToTxs(it))
             })
         }.catch {
-            emit(Result.Error(it))
+            emit(Result.Error(it.fillInStackTrace()))
         }.onEach {
             Timber.d(it.toString())
         }.flowOn(ioDispatcher)

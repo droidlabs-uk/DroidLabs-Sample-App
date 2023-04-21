@@ -24,8 +24,6 @@ object Deps {
         const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val android = "io.ktor:ktor-client-android:${Versions.ktor}"
         const val negotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
-
-//        const val serialization = "io.ktor:ktor-client-serialization:${Versions.ktor}" // TODO
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
     }
 
