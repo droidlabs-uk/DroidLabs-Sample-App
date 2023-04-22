@@ -20,6 +20,13 @@ object Deps {
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.4.1"
     }
 
+    object Ktor {
+        const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val android = "io.ktor:ktor-client-android:${Versions.ktor}"
+        const val negotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+        const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+    }
+
     object Coroutines {
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
@@ -58,7 +65,7 @@ object Deps {
     object Hilt {
         const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-        const val hiltNavCompose ="androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
+        const val hiltNavCompose = "androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
     }
 
     object Compose {

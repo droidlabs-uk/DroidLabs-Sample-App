@@ -14,4 +14,6 @@ object Versions {
     const val composeCompiler = "1.4.5"
     const val accompanist = "0.21.5-rc"
     const val detektVersion = "1.19.0"
+    const val serialization = "1.8.20"
+    const val ktor = "2.2.4"
 }
