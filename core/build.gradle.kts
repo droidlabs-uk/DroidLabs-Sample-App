@@ -63,6 +63,9 @@ dependencies {
     implementation(Deps.Ktor.negotiation)
     implementation(Deps.Ktor.json)
 
+    implementation(Deps.Room.core)
+    annotationProcessor(Deps.Room.compiler)
+
     implementation(Deps.Compose.ui)
     implementation(Deps.Compose.uiTooling)
     implementation(Deps.Compose.foundation)

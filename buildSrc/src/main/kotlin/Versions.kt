@@ -16,4 +16,5 @@ object Versions {
     const val detektVersion = "1.19.0"
     const val serialization = "1.8.20"
     const val ktor = "2.2.4"
+    const val room = "2.5.1"
 }

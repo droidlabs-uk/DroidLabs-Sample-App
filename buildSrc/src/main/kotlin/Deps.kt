@@ -27,6 +27,11 @@ object Deps {
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
     }
 
+    object Room {
+        const val core = "androidx.room:room-runtime:${Versions.room}"
+        const val compiler = "androidx.room:room-compiler:${Versions.room}"
+    }
+
     object Coroutines {
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
