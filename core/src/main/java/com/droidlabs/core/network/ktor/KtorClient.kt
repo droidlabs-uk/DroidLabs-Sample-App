@@ -7,13 +7,14 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
+private const val TIMEOUT_15_SEC = 15000L
 object KtorClient {
 
     private val client = HttpClient(Android) {
         install(HttpTimeout) {
-            requestTimeoutMillis = 15000L
-            connectTimeoutMillis = 15000L
-            socketTimeoutMillis = 15000L
+            requestTimeoutMillis = TIMEOUT_15_SEC
+            connectTimeoutMillis = TIMEOUT_15_SEC
+            socketTimeoutMillis = TIMEOUT_15_SEC
         }
 
         install(ContentNegotiation) {
