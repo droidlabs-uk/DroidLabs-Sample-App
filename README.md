@@ -22,6 +22,7 @@ Application
 - modularised application
 - Hilt dependency injection
 - Retrofit + Moshi
+- Ktor + kotlinx-json
 - RxAndroid / RxJava
 - MVI architecture
 - Coroutines
@@ -30,6 +31,7 @@ Application
 - Jetpack Compose UI  
 - BottomNavigationBar / Tabbed Layout
 - build.gradle with Kotlin DSL
+- Gradle 8.0
 
 CI/CD via Github Actions 
 - Android detekt
