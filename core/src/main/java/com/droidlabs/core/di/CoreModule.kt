@@ -2,11 +2,15 @@ package com.droidlabs.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.droidlabs.core.network.transaction.data.api.BlockchainApiFactory
-import com.droidlabs.core.network.transaction.data.api.BlockchainRepository
-import com.droidlabs.core.network.transaction.data.api.BlockchainRepositoryImpl
-import com.droidlabs.core.network.transaction.data.database.BlockchainDatabase
+import com.droidlabs.core.network.ExceptionHandler
+import com.droidlabs.core.network.ExceptionHandlerImpl
+import com.droidlabs.core.network.transaction.data.local.BlockchainCache
+import com.droidlabs.core.network.transaction.data.local.BlockchainCacheImpl
+import com.droidlabs.core.network.transaction.data.local.database.BlockchainDatabase
+import com.droidlabs.core.network.transaction.data.remote.api.BlockchainApiFactory
 import com.droidlabs.core.network.transaction.domain.model.BLOCKCHAIN_TABLE_NAME
+import com.droidlabs.core.network.transaction.domain.repository.BlockchainRepository
+import com.droidlabs.core.network.transaction.domain.repository.BlockchainRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,12 +20,12 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 
-@InstallIn(SingletonComponent::class)
+@InstallIn(SingletonComponent::class) // TODO: @Singleton needed for all bindings?
 @Module(includes = [CoreModule.BindingModule::class])
 class CoreModule {
 
     @Provides
-    internal fun provideBlockchainAPI() = BlockchainApiFactory.blockchainAPI
+    fun provideBlockchainApi() = BlockchainApiFactory.blockchainApi
 
     @Provides
     @Singleton
@@ -41,8 +45,20 @@ class CoreModule {
     internal interface BindingModule {
         @Binds
         @Singleton
-        abstract fun bindBlockchainRepository(
+        fun bindBlockchainRepository(
             repositoryImpl: BlockchainRepositoryImpl
         ): BlockchainRepository
+
+        @Binds
+        @Singleton
+        fun bindBlockchainCache(
+            blockchainCacheImpl: BlockchainCacheImpl
+        ): BlockchainCache
+
+        @Binds
+        @Singleton
+        fun bindExceptionHandler(
+            exceptionHandlerImpl: ExceptionHandlerImpl
+        ): ExceptionHandler
     }
 }

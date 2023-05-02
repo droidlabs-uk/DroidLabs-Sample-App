@@ -1,4 +1,4 @@
-package com.droidlabs.core.network.transaction.data.api
+package com.droidlabs.core.network.transaction.data.remote.api
 
 import com.droidlabs.core.network.transaction.domain.model.BlockchainMultiAddress
 

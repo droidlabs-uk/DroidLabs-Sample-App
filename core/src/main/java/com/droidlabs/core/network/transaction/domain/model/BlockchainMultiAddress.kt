@@ -2,6 +2,7 @@ package com.droidlabs.core.network.transaction.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,6 +11,9 @@ const val BLOCKCHAIN_TABLE_NAME = "Blockchain"
 @Entity(tableName = BLOCKCHAIN_TABLE_NAME)
 @Serializable
 data class BlockchainMultiAddress(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+
     @ColumnInfo
     @SerialName("addresses")
     val addresses: List<Address>,
@@ -30,6 +34,10 @@ data class BlockchainMultiAddress(
 @Entity
 @Serializable
 data class Address(
+    @ColumnInfo
+    @SerialName("address")
+    val address: String,
+
     @ColumnInfo
     @SerialName("total_received")
     val total_received: Int,

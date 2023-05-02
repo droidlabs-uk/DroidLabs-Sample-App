@@ -1,6 +1,6 @@
 package com.droidlabs.transaction.di
 
-import com.droidlabs.core.network.transaction.data.api.BlockchainApiFactory
+import com.droidlabs.core.network.transaction.data.remote.api.BlockchainApiFactory
 import com.droidlabs.transaction.interactor.ITransactionsInteractor
 import com.droidlabs.transaction.interactor.TransactionsInteractor
 import com.droidlabs.transaction.ui.transactionsRx.presenter.DefaultTransactionProcessor
@@ -34,7 +34,7 @@ class TransactionModule {
 
     @Provides
     fun provideTransactionsInteractor(): ITransactionsInteractor =
-            TransactionsInteractor(BlockchainApiFactory.blockchainAPI)
+            TransactionsInteractor(BlockchainApiFactory.blockchainApi)
 
     @Provides
     fun provideRxScheduler(): Scheduler = Schedulers.computation()

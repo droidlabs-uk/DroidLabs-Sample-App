@@ -2,10 +2,12 @@ package com.droidlabs.core.network.transaction.domain.usecases
 
 import com.droidlabs.core.di.IoDispatcher
 import com.droidlabs.core.network.Result
+import com.droidlabs.core.network.Result.Error
+import com.droidlabs.core.network.Result.Loading
 import com.droidlabs.core.network.Result.Success
-import com.droidlabs.core.network.transaction.data.api.BlockchainRepository
 import com.droidlabs.core.network.transaction.domain.mapper.BlockchainMapper
 import com.droidlabs.core.network.transaction.domain.model.Txs
+import com.droidlabs.core.network.transaction.domain.repository.BlockchainRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -25,13 +27,17 @@ class BlockchainGetTxsUseCase @Inject constructor(
 
     suspend fun fetchTxs(address: String): Flow<Result<List<Txs>>> =
         flow {
-            emit(Result.Loading)
+            emit(Loading)
 
-            emitAll(blockchainRepository.getMultiAddressKtor(address).map {
-                Success(blockchainMapper.mapToTxs(it))
+            emitAll(blockchainRepository.getMultiAddressKtor(address, force = false).map {
+                if (it != null) {
+                    Success(blockchainMapper.mapToTxs(it))
+                } else {
+                    Error(Exception("null"))// TODO
+                }
             })
         }.catch {
-            emit(Result.Error(it.fillInStackTrace()))
+            emit(Error(it.fillInStackTrace()))
         }.onEach {
             Timber.d(it.toString())
         }.flowOn(ioDispatcher)

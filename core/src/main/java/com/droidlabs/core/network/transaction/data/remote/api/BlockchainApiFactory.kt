@@ -1,4 +1,4 @@
-package com.droidlabs.core.network.transaction.data.api
+package com.droidlabs.core.network.transaction.data.remote.api
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -20,5 +20,5 @@ object BlockchainApiFactory {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
-    val blockchainAPI : BlockchainAPI = retrofit().create(BlockchainAPI::class.java)
+    val blockchainApi : BlockchainApi = retrofit().create(BlockchainApi::class.java)
 }
