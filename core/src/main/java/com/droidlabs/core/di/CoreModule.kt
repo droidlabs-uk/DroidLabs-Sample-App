@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.droidlabs.core.network.ExceptionHandler
 import com.droidlabs.core.network.ExceptionHandlerImpl
+import com.droidlabs.core.network.ktor.KtorClient
 import com.droidlabs.core.network.transaction.data.local.BlockchainCache
 import com.droidlabs.core.network.transaction.data.local.BlockchainCacheImpl
 import com.droidlabs.core.network.transaction.data.local.database.BlockchainDatabase
@@ -20,7 +21,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 
-@InstallIn(SingletonComponent::class) // TODO: @Singleton needed for all bindings?
+@InstallIn(SingletonComponent::class)
 @Module(includes = [CoreModule.BindingModule::class])
 class CoreModule {
 
@@ -28,8 +29,11 @@ class CoreModule {
     fun provideBlockchainApi() = BlockchainApiFactory.blockchainApi
 
     @Provides
+    fun provideKtorClient() = KtorClient
+
+    @Provides
     @Singleton
-    fun provideBlockchainDatabase(@ApplicationContext appContext: Context) =
+    fun provideBlockchainDatabase(@ApplicationContext appContext: Context): BlockchainDatabase =
         Room.databaseBuilder(
             context = appContext,
             klass = BlockchainDatabase::class.java,

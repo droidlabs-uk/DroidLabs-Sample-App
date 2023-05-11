@@ -30,6 +30,7 @@ object Deps {
     object Room {
         const val core = "androidx.room:room-runtime:${Versions.room}"
         const val compiler = "androidx.room:room-compiler:${Versions.room}"
+        const  val ktx = "androidx.room:room-ktx:${Versions.room}"
     }
 
     object Coroutines {

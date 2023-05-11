@@ -31,7 +31,8 @@ interface BlockchainDao : BaseDao<BlockchainMultiAddress> {
     @Query("SELECT * FROM $BLOCKCHAIN_TABLE_NAME WHERE id=:id")
     fun getBlockchainMultiAddressById(id: Long): BlockchainMultiAddress
 
-    @Query("SELECT * FROM $BLOCKCHAIN_TABLE_NAME WHERE addresses IN (:address)")
+//    @Query("SELECT * FROM $BLOCKCHAIN_TABLE_NAME WHERE addresses IN (:address)")
+    @Query("SELECT * FROM $BLOCKCHAIN_TABLE_NAME WHERE addresses IN (:address)") //TODO: needs to be correct with embedded
     fun getBlockchainMultiAddressByAddress(address: String): BlockchainMultiAddress
 }
 

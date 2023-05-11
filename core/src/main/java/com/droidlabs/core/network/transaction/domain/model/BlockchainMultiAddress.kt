@@ -1,6 +1,7 @@
 package com.droidlabs.core.network.transaction.domain.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
@@ -10,30 +11,33 @@ const val BLOCKCHAIN_TABLE_NAME = "Blockchain"
 
 @Entity(tableName = BLOCKCHAIN_TABLE_NAME)
 @Serializable
-data class BlockchainMultiAddress(
+class BlockchainMultiAddress(
+
     @PrimaryKey(autoGenerate = true)
     val id: Int,
 
     @ColumnInfo
     @SerialName("addresses")
-    val addresses: List<Address>,
+    val addresses: MutableList<Address>,
 
-    @ColumnInfo
+    @Embedded
     @SerialName("wallet")
     val wallet: Wallet,
 
     @ColumnInfo
     @SerialName("txs")
-    val txs: List<Txs>,
+    val txs: MutableList<Txs>,
 
-    @ColumnInfo
+    @Embedded
     @SerialName("info")
     val info: Info
 )
 
 @Entity
 @Serializable
-data class Address(
+class Address(
+
+    @PrimaryKey
     @ColumnInfo
     @SerialName("address")
     val address: String,
@@ -53,7 +57,8 @@ data class Address(
 
 @Entity
 @Serializable
-data class Wallet(
+class Wallet(
+
     @ColumnInfo
     @SerialName("final_balance")
     val final_balance: Int
@@ -61,7 +66,8 @@ data class Wallet(
 
 @Entity
 @Serializable
-data class Txs(
+class Txs(
+
     @ColumnInfo
     @SerialName("result")
     val result: Int,
@@ -70,6 +76,7 @@ data class Txs(
     @SerialName("time")
     val time: Int,
 
+    @PrimaryKey
     @ColumnInfo
     @SerialName("hash")
     val hash: String,
@@ -81,7 +88,8 @@ data class Txs(
 
 @Entity
 @Serializable
-data class Info(
+class Info(
+
     @ColumnInfo
     @SerialName("conversion")
     val conversion: String

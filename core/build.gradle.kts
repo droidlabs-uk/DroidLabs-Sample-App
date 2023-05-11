@@ -64,7 +64,8 @@ dependencies {
     implementation(Deps.Ktor.json)
 
     implementation(Deps.Room.core)
-    annotationProcessor(Deps.Room.compiler)
+    implementation(Deps.Room.ktx)
+    kapt(Deps.Room.compiler)
 
     implementation(Deps.Compose.ui)
     implementation(Deps.Compose.uiTooling)
